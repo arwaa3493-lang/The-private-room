@@ -1,7 +1,8 @@
 // =========================
-// THE PRIVATE ROOM – JS
+// THE PRIVATE ROOM – JS (FINAL)
 // =========================
 
+// ---- ELEMENTS ----
 const entrySection = document.getElementById("entry");
 const focusRoom = document.getElementById("focusRoom");
 const enterBtn = document.getElementById("enterRoomBtn");
@@ -10,16 +11,19 @@ const input = document.getElementById("avoidanceInput");
 const timerEl = document.getElementById("timer");
 const whisperEl = document.getElementById("whisperText");
 
+// ---- TIMER STATE ----
+const SESSION_MINUTES = 25;
+let totalSeconds = SESSION_MINUTES * 60;
 let timerInterval = null;
-let totalSeconds = 25 * 60;
 
-const whispers = [
-  "Stay with it.",
-  "Discomfort means you are close.",
-  "Do not negotiate with distraction.",
-  "This is the work.",
-  "You can rest after truth."
-];
+// ---- TIME-ALIGNED WHISPERS ----
+const whispers = {
+  1500: "Begin without adjusting anything.",      // 25:00
+  1200: "Your mind is louder before it settles.", // 20:00
+  900:  "This discomfort is temporary.",          // 15:00
+  600:  "You are already past the hardest part.", // 10:00
+  300:  "Finish clean. No rushing."                // 05:00
+};
 
 // ---- FORMAT TIME ----
 function formatTime(seconds) {
@@ -31,16 +35,14 @@ function formatTime(seconds) {
 // ---- START TIMER ----
 function startTimer() {
   timerEl.textContent = formatTime(totalSeconds);
+  whisperEl.textContent = whispers[totalSeconds];
 
   timerInterval = setInterval(() => {
     totalSeconds--;
-
     timerEl.textContent = formatTime(totalSeconds);
 
-    // change whisper every 5 minutes
-    if (totalSeconds % 300 === 0) {
-      const random = Math.floor(Math.random() * whispers.length);
-      whisperEl.textContent = whispers[random];
+    if (whispers[totalSeconds]) {
+      whisperEl.textContent = whispers[totalSeconds];
     }
 
     if (totalSeconds <= 0) {
@@ -51,7 +53,7 @@ function startTimer() {
 }
 
 // ---- ENTER ROOM ----
-enterBtn.addEventListener("click", () => {
+function enterRoom() {
   if (input.value.trim() === "") {
     input.focus();
     return;
@@ -63,21 +65,31 @@ enterBtn.addEventListener("click", () => {
 
   setTimeout(() => {
     entrySection.style.display = "none";
+
     focusRoom.classList.remove("locked");
     focusRoom.style.display = "block";
+
+    // soft lock outside world
+    document.body.style.pointerEvents = "none";
+    focusRoom.style.pointerEvents = "auto";
+
     startTimer();
   }, 500);
-});
+}
 
 // ---- LEAVE ROOM ----
-leaveBtn.addEventListener("click", () => {
+function leaveRoom() {
   clearInterval(timerInterval);
 
-  // reset state
-  totalSeconds = 25 * 60;
-  timerEl.textContent = "25:00";
+  // reset timer state
+  totalSeconds = SESSION_MINUTES * 60;
+  timerEl.textContent = formatTime(totalSeconds);
   whisperEl.textContent = "You don’t need motivation. You need presence.";
 
+  // unlock world
+  document.body.style.pointerEvents = "auto";
+
+  // reset UI
   focusRoom.style.display = "none";
   focusRoom.classList.add("locked");
 
@@ -88,4 +100,15 @@ leaveBtn.addEventListener("click", () => {
   }, 50);
 
   input.value = "";
+}
+
+// ---- EVENTS ----
+enterBtn.addEventListener("click", enterRoom);
+
+leaveBtn.addEventListener("click", leaveRoom);
+
+input.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    enterRoom();
+  }
 });
