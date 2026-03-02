@@ -38,65 +38,64 @@
         This space responds to honesty.
       </p>
     </section>
-<!-- ------------------------
-     VISUAL DAILY BOARD SECTION
-     ------------------------ -->
-<section class="visual-board" id="visualBoard">
 
-  <!-- Example Card Template (clone or generate via JS for multiple cards) -->
-  <div class="card">
-    <h3>Outfit of the Day</h3>
-    <img src="" alt="Outfit Preview" id="outfitImg">
-    <input type="file" accept="image/*" id="outfitUpload">
-    <textarea placeholder="Optional note..." rows="2"></textarea>
-    <p class="tip">Upload an image that represents your outfit today</p>
-  </div>
+    <!-- ------------------------
+         VISUAL DAILY BOARD SECTION (HIDDEN INITIALLY)
+         ------------------------ -->
+    <section class="visual-board" id="visualBoard" style="opacity:0; display:none; transition: opacity 0.6s ease, transform 0.6s ease; transform: translateY(20px);">
 
-  <div class="card">
-    <h3>Hobby of the Day</h3>
-    <img src="" alt="Hobby Preview" id="hobbyImg">
-    <input type="file" accept="image/*" id="hobbyUpload">
-    <textarea placeholder="Optional note..." rows="2"></textarea>
-    <p class="tip">Visualize your hobby or creative moment</p>
-  </div>
+      <div class="card">
+        <h3>Outfit of the Day</h3>
+        <img src="" alt="Outfit Preview" id="outfitImg">
+        <input type="file" accept="image/*" id="outfitUpload">
+        <textarea placeholder="Optional note..." rows="2"></textarea>
+        <p class="tip">Upload an image that represents your outfit today</p>
+      </div>
 
-  <div class="card">
-    <h3>Task of the Day</h3>
-    <img src="" alt="Task Preview" id="taskImg">
-    <input type="file" accept="image/*" id="taskUpload">
-    <textarea placeholder="Optional note..." rows="2"></textarea>
-    <p class="tip">Highlight your main task for today</p>
-  </div>
+      <div class="card">
+        <h3>Hobby of the Day</h3>
+        <img src="" alt="Hobby Preview" id="hobbyImg">
+        <input type="file" accept="image/*" id="hobbyUpload">
+        <textarea placeholder="Optional note..." rows="2"></textarea>
+        <p class="tip">Visualize your hobby or creative moment</p>
+      </div>
 
-  <div class="card">
-    <h3>Workout of the Day</h3>
-    <img src="" alt="Workout Preview" id="workoutImg">
-    <input type="file" accept="image/*" id="workoutUpload">
-    <textarea placeholder="Optional note..." rows="2"></textarea>
-    <p class="tip">Your visual motivation for movement</p>
-  </div>
+      <div class="card">
+        <h3>Task of the Day</h3>
+        <img src="" alt="Task Preview" id="taskImg">
+        <input type="file" accept="image/*" id="taskUpload">
+        <textarea placeholder="Optional note..." rows="2"></textarea>
+        <p class="tip">Highlight your main task for today</p>
+      </div>
 
-  <div class="card">
-    <h3>Meal of the Day</h3>
-    <img src="" alt="Meal Preview" id="mealImg">
-    <input type="file" accept="image/*" id="mealUpload">
-    <textarea placeholder="Optional note..." rows="2"></textarea>
-    <p class="tip">Plan or imagine your meals</p>
-  </div>
+      <div class="card">
+        <h3>Workout of the Day</h3>
+        <img src="" alt="Workout Preview" id="workoutImg">
+        <input type="file" accept="image/*" id="workoutUpload">
+        <textarea placeholder="Optional note..." rows="2"></textarea>
+        <p class="tip">Your visual motivation for movement</p>
+      </div>
 
-  <div class="card">
-    <h3>Priority of the Day</h3>
-    <img src="" alt="Priority Preview" id="priorityImg">
-    <input type="file" accept="image/*" id="priorityUpload">
-    <textarea placeholder="Optional note..." rows="2"></textarea>
-    <p class="tip">What matters most today? Make it visual.</p>
-  </div>
+      <div class="card">
+        <h3>Meal of the Day</h3>
+        <img src="" alt="Meal Preview" id="mealImg">
+        <input type="file" accept="image/*" id="mealUpload">
+        <textarea placeholder="Optional note..." rows="2"></textarea>
+        <p class="tip">Plan or imagine your meals</p>
+      </div>
 
-</section>
+      <div class="card">
+        <h3>Priority of the Day</h3>
+        <img src="" alt="Priority Preview" id="priorityImg">
+        <input type="file" accept="image/*" id="priorityUpload">
+        <textarea placeholder="Optional note..." rows="2"></textarea>
+        <p class="tip">What matters most today? Make it visual.</p>
+      </div>
+
+    </section>
 
     <!-- FOCUS STATE (HIDDEN INITIALLY) -->
     <section class="focus-room locked" id="focusRoom">
-
       <h1>Stay</h1>
 
       <div class="timer" id="timer">
@@ -110,12 +109,11 @@
       <button id="endSessionBtn">
         Leave Quietly
       </button>
-
     </section>
 
   </main>
 
-  <!-- JS (COMING NEXT) -->
+  <!-- JS -->
   <script src="script.js"></script>
 
 </body>
