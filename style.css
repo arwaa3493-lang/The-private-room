@@ -195,3 +195,112 @@ button:active {
     font-size: 2.4rem;
   }
 }
+/* =========================
+   VISUAL DAILY BOARD – CSS
+   ========================= */
+
+/* ---- BOARD CONTAINER ---- */
+.visual-board {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.2rem;
+  margin-top: 2.5rem;
+  padding-bottom: 3rem;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  opacity: 0; /* hidden by default */
+  transform: translateY(20px);
+}
+
+/* visible state */
+.visual-board.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---- SINGLE CARD ---- */
+.card {
+  background: var(--bg-overlay);
+  border-radius: 18px;
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.07);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 28px rgba(0, 0, 0, 0.1);
+}
+
+/* ---- CARD TITLE ---- */
+.card h3 {
+  font-family: var(--font-main);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-main);
+  margin-bottom: 0.8rem;
+  text-align: center;
+}
+
+/* ---- CARD IMAGE PREVIEW ---- */
+.card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 0.7rem;
+  transition: transform 0.3s ease;
+}
+
+.card img:hover {
+  transform: scale(1.03);
+}
+
+/* ---- CARD NOTE / TEXTAREA ---- */
+.card textarea {
+  width: 100%;
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  padding: 0.6rem;
+  font-size: 0.85rem;
+  resize: none;
+  font-family: var(--font-secondary);
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+.card textarea:focus {
+  border-color: var(--accent-strong);
+}
+
+/* ---- IMAGE UPLOAD BUTTON ---- */
+.card input[type="file"] {
+  margin-top: 0.6rem;
+  font-size: 0.8rem;
+}
+
+/* ---- SMALL CARD TIP ---- */
+.card .tip {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 0.4rem;
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 480px) {
+  .card img {
+    height: 120px;
+  }
+
+  .card h3 {
+    font-size: 1rem;
+  }
+
+  .card textarea {
+    font-size: 0.8rem;
+  }
+}
