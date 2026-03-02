@@ -112,3 +112,65 @@ input.addEventListener("keydown", (e) => {
     enterRoom();
   }
 });
+// =========================
+// VISUAL DAILY BOARD JS
+// =========================
+
+const visualBoard = document.getElementById("visualBoard");
+
+// ---- FUNCTION: Reveal the visual board ----
+function showVisualBoard() {
+  visualBoard.classList.add("active");
+}
+
+// Attach this to your "Enter Visual Day" button
+// If you want it directly under the Private Room enter button:
+const visualEnterBtn = document.createElement("button");
+visualEnterBtn.textContent = "Enter Visual Day";
+visualEnterBtn.style.marginTop = "2rem";
+visualEnterBtn.style.padding = "0.9rem 1.8rem";
+visualEnterBtn.style.borderRadius = "999px";
+visualEnterBtn.style.border = "none";
+visualEnterBtn.style.background = "linear-gradient(135deg, var(--accent-soft), var(--accent-strong))";
+visualEnterBtn.style.color = "#fff";
+visualEnterBtn.style.cursor = "pointer";
+visualEnterBtn.style.fontFamily = "var(--font-secondary)";
+visualEnterBtn.style.transition = "0.3s ease";
+visualEnterBtn.onmouseover = () => visualEnterBtn.style.opacity = 0.9;
+visualEnterBtn.onmouseout = () => visualEnterBtn.style.opacity = 1;
+
+// Append button just under entry section
+entrySection.appendChild(visualEnterBtn);
+
+// Click reveals the board
+visualEnterBtn.addEventListener("click", showVisualBoard);
+
+// ---- IMAGE UPLOAD HANDLER ----
+function handleImageUpload(inputEl, imgEl) {
+  inputEl.addEventListener("change", () => {
+    const file = inputEl.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      imgEl.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+// ---- ATTACH UPLOAD HANDLERS TO CARDS ----
+const cardMappings = [
+  {inputId: "outfitUpload", imgId: "outfitImg"},
+  {inputId: "hobbyUpload", imgId: "hobbyImg"},
+  {inputId: "taskUpload", imgId: "taskImg"},
+  {inputId: "workoutUpload", imgId: "workoutImg"},
+  {inputId: "mealUpload", imgId: "mealImg"},
+  {inputId: "priorityUpload", imgId: "priorityImg"},
+];
+
+cardMappings.forEach(({inputId, imgId}) => {
+  const inputEl = document.getElementById(inputId);
+  const imgEl = document.getElementById(imgId);
+  handleImageUpload(inputEl, imgEl);
+});
