@@ -1,1 +1,197 @@
 
+/* =========================
+   THE PRIVATE ROOM – CSS
+   ========================= */
+
+/* ---- RESET ---- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---- ROOT VARIABLES ---- */
+:root {
+  --bg-main: #f7f3ef;
+  --bg-overlay: rgba(255, 255, 255, 0.85);
+  --accent-soft: #d8b4a0;
+  --accent-strong: #b08968;
+  --text-main: #2f2f2f;
+  --text-muted: #7a7a7a;
+  --border-soft: rgba(0, 0, 0, 0.08);
+
+  --font-main: "Playfair Display", serif;
+  --font-secondary: "Inter", sans-serif;
+
+  --transition-slow: 0.6s ease;
+  --transition-fast: 0.25s ease;
+}
+
+/* ---- BODY ---- */
+body {
+  min-height: 100vh;
+  background: radial-gradient(
+      circle at top,
+      #fff 0%,
+      var(--bg-main) 55%
+  );
+  font-family: var(--font-secondary);
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* ---- MAIN CONTAINER ---- */
+.private-room {
+  background: var(--bg-overlay);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  width: min(92%, 520px);
+  padding: 3.5rem 3rem;
+  border-radius: 28px;
+  border: 1px solid var(--border-soft);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+  animation: fadeIn 1.2s ease forwards;
+}
+
+/* ---- TITLE ---- */
+.private-room h1 {
+  font-family: var(--font-main);
+  font-size: 1.8rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  margin-bottom: 2.2rem;
+  text-align: center;
+}
+
+/* ---- PROMPT TEXT ---- */
+.prompt {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-bottom: 1.8rem;
+}
+
+/* ---- INPUT ---- */
+input[type="text"],
+textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border-soft);
+  padding: 0.8rem 0.2rem;
+  font-size: 1rem;
+  font-family: var(--font-secondary);
+  color: var(--text-main);
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #b0b0b0;
+  font-style: italic;
+}
+
+input:focus,
+textarea:focus {
+  border-bottom-color: var(--accent-strong);
+}
+
+/* ---- BUTTON ---- */
+button {
+  margin-top: 2.5rem;
+  width: 100%;
+  padding: 0.9rem;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(
+      135deg,
+      var(--accent-soft),
+      var(--accent-strong)
+  );
+  color: #fff;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    opacity var(--transition-fast);
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(176, 137, 104, 0.35);
+  opacity: 0.95;
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* ---- TIMER / FOCUS MODE ---- */
+.focus-room {
+  text-align: center;
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.timer {
+  font-family: var(--font-main);
+  font-size: 3rem;
+  margin: 2rem 0;
+  letter-spacing: 2px;
+}
+
+.whisper {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-style: italic;
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+/* ---- LOCKED STATE ---- */
+.locked {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+/* ---- FOOTNOTE ---- */
+.footer-note {
+  margin-top: 2.5rem;
+  font-size: 0.75rem;
+  text-align: center;
+  color: #a0a0a0;
+}
+
+/* ---- ANIMATIONS ---- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 480px) {
+  .private-room {
+    padding: 2.5rem 2rem;
+  }
+
+  .timer {
+    font-size: 2.4rem;
+  }
+}
