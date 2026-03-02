@@ -1,5 +1,5 @@
 // =========================
-// THE PRIVATE ROOM – JS (FINAL + FIXED)
+// THE PRIVATE ROOM + VISUAL BOARD – JS
 // =========================
 
 // ---- ELEMENTS ----
@@ -11,6 +11,8 @@ const input = document.getElementById("avoidanceInput");
 const timerEl = document.getElementById("timer");
 const whisperEl = document.getElementById("whisperText");
 
+const visualBoard = document.getElementById("visualBoard");
+
 // ---- TIMER STATE ----
 const SESSION_MINUTES = 25;
 let totalSeconds = SESSION_MINUTES * 60;
@@ -18,11 +20,11 @@ let timerInterval = null;
 
 // ---- TIME-ALIGNED WHISPERS ----
 const whispers = {
-  1500: "Begin without adjusting anything.",
-  1200: "Your mind is louder before it settles.",
-  900:  "This discomfort is temporary.",
-  600:  "You are already past the hardest part.",
-  300:  "Finish clean. No rushing."
+  1500: "Begin without adjusting anything.",      // 25:00
+  1200: "Your mind is louder before it settles.", // 20:00
+  900:  "This discomfort is temporary.",          // 15:00
+  600:  "You are already past the hardest part.", // 10:00
+  300:  "Finish clean. No rushing."               // 05:00
 };
 
 // ---- FORMAT TIME ----
@@ -35,7 +37,7 @@ function formatTime(seconds) {
 // ---- START TIMER ----
 function startTimer() {
   timerEl.textContent = formatTime(totalSeconds);
-  whisperEl.textContent = whispers[totalSeconds];
+  whisperEl.textContent = whispers[totalSeconds] || "Focus now.";
 
   timerInterval = setInterval(() => {
     totalSeconds--;
@@ -48,6 +50,8 @@ function startTimer() {
     if (totalSeconds <= 0) {
       clearInterval(timerInterval);
       whisperEl.textContent = "You stayed. That matters.";
+      // Optional: Reveal visual board automatically when timer ends
+      showVisualBoard();
     }
   }, 1000);
 }
@@ -59,6 +63,7 @@ function enterRoom() {
     return;
   }
 
+  // fade out entry
   entrySection.style.opacity = "0";
   entrySection.style.pointerEvents = "none";
 
@@ -68,6 +73,7 @@ function enterRoom() {
     focusRoom.classList.remove("locked");
     focusRoom.style.display = "block";
 
+    // soft lock outside world
     document.body.style.pointerEvents = "none";
     focusRoom.style.pointerEvents = "auto";
 
@@ -79,12 +85,15 @@ function enterRoom() {
 function leaveRoom() {
   clearInterval(timerInterval);
 
+  // reset timer state
   totalSeconds = SESSION_MINUTES * 60;
   timerEl.textContent = formatTime(totalSeconds);
   whisperEl.textContent = "You don’t need motivation. You need presence.";
 
+  // unlock world
   document.body.style.pointerEvents = "auto";
 
+  // reset UI
   focusRoom.style.display = "none";
   focusRoom.classList.add("locked");
 
@@ -100,23 +109,15 @@ function leaveRoom() {
 // ---- EVENTS ----
 enterBtn.addEventListener("click", enterRoom);
 leaveBtn.addEventListener("click", leaveRoom);
-
 input.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
-    enterRoom();
-  }
-}); // <-- Properly close the keydown listener
+  if (e.key === "Enter") enterRoom();
+});
 
 // =========================
-// VISUAL DAILY BOARD JS
+// VISUAL DAILY BOARD
 // =========================
-const visualBoard = document.getElementById("visualBoard");
 
-function showVisualBoard() {
-  visualBoard.classList.add("active");
-}
-
-// Create "Enter Visual Day" button
+// ---- CREATE "ENTER VISUAL DAY" BUTTON ----
 const visualEnterBtn = document.createElement("button");
 visualEnterBtn.textContent = "Enter Visual Day";
 visualEnterBtn.style.marginTop = "2rem";
@@ -131,7 +132,18 @@ visualEnterBtn.style.transition = "0.3s ease";
 visualEnterBtn.onmouseover = () => visualEnterBtn.style.opacity = 0.9;
 visualEnterBtn.onmouseout = () => visualEnterBtn.style.opacity = 1;
 
+// append under entry section
 entrySection.appendChild(visualEnterBtn);
+
+// ---- FUNCTION: Reveal the visual board ----
+function showVisualBoard() {
+  visualBoard.style.display = "grid"; // immediately visible
+  setTimeout(() => {
+    visualBoard.classList.add("active"); // animate opacity/transform
+  }, 50);
+}
+
+// click event for button
 visualEnterBtn.addEventListener("click", showVisualBoard);
 
 // ---- IMAGE UPLOAD HANDLER ----
