@@ -111,7 +111,7 @@ input.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     enterRoom();
   }
-});
+
 // =========================
 // VISUAL DAILY BOARD JS
 // =========================
