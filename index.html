@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Private Room</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main class="private-room" id="room">
+
+    <!-- ENTRY STATE -->
+    <section class="entry" id="entry">
+      <h1>The Private Room</h1>
+
+      <p class="prompt">
+        What are you avoiding today?
+      </p>
+
+      <input
+        type="text"
+        id="avoidanceInput"
+        placeholder="Say it quietly. No one else will see this."
+        autocomplete="off"
+      />
+
+      <button id="enterRoomBtn">
+        Enter
+      </button>
+
+      <p class="footer-note">
+        This space responds to honesty.
+      </p>
+    </section>
+
+    <!-- FOCUS STATE (HIDDEN INITIALLY) -->
+    <section class="focus-room locked" id="focusRoom">
+
+      <h1>Stay</h1>
+
+      <div class="timer" id="timer">
+        25:00
+      </div>
+
+      <p class="whisper" id="whisperText">
+        You don’t need motivation. You need presence.
+      </p>
+
+      <button id="endSessionBtn">
+        Leave Quietly
+      </button>
+
+    </section>
+
+  </main>
+
+  <!-- JS (COMING NEXT) -->
+  <script src="script.js"></script>
+
+</body>
+</html>
