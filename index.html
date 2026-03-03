@@ -1,120 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Private Room</title>
 
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-
-  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <main class="private-room" id="room">
+<main class="container">
 
-    <!-- ENTRY STATE -->
-    <section class="entry" id="entry">
-      <h1>The Private Room</h1>
+  <!-- ENTRY -->
+  <section id="entry">
+    <h1>The Private Room</h1>
+    <p class="prompt">What are you avoiding today?</p>
 
-      <p class="prompt">
-        What are you avoiding today?
-      </p>
+    <input type="text" id="avoidanceInput" placeholder="Say it quietly.">
+    <button id="enterRoomBtn">Enter</button>
 
-      <input
-        type="text"
-        id="avoidanceInput"
-        placeholder="Say it quietly. No one else will see this."
-        autocomplete="off"
-      />
+    <button id="visualBtn" class="secondary-btn">
+      Enter Visual Day
+    </button>
+  </section>
 
-      <button id="enterRoomBtn">
-        Enter
-      </button>
+  <!-- FOCUS ROOM -->
+  <section id="focusRoom" class="hidden">
+    <h1>Stay</h1>
+    <div id="timer">25:00</div>
+    <p id="whisperText">You don’t need motivation. You need presence.</p>
+    <button id="endSessionBtn">Leave Quietly</button>
+  </section>
 
-      <p class="footer-note">
-        This space responds to honesty.
-      </p>
-    </section>
+  <!-- VISUAL BOARD -->
+  <section id="visualBoard" class="hidden">
 
-    <!-- ------------------------
-         VISUAL DAILY BOARD SECTION (HIDDEN INITIALLY)
-         ------------------------ -->
-    <section class="visual-board" id="visualBoard" style="opacity:0; display:none; transition: opacity 0.6s ease, transform 0.6s ease; transform: translateY(20px);">
+    <div class="card">
+      <h3>Outfit of the Day</h3>
+      <img id="outfitImg">
+      <input type="file" id="outfitUpload" accept="image/*">
+    </div>
 
-      <div class="card">
-        <h3>Outfit of the Day</h3>
-        <img src="" alt="Outfit Preview" id="outfitImg">
-        <input type="file" accept="image/*" id="outfitUpload">
-        <textarea placeholder="Optional note..." rows="2"></textarea>
-        <p class="tip">Upload an image that represents your outfit today</p>
-      </div>
+    <div class="card">
+      <h3>Hobby of the Day</h3>
+      <img id="hobbyImg">
+      <input type="file" id="hobbyUpload" accept="image/*">
+    </div>
 
-      <div class="card">
-        <h3>Hobby of the Day</h3>
-        <img src="" alt="Hobby Preview" id="hobbyImg">
-        <input type="file" accept="image/*" id="hobbyUpload">
-        <textarea placeholder="Optional note..." rows="2"></textarea>
-        <p class="tip">Visualize your hobby or creative moment</p>
-      </div>
+    <div class="card">
+      <h3>Task of the Day</h3>
+      <img id="taskImg">
+      <input type="file" id="taskUpload" accept="image/*">
+    </div>
 
-      <div class="card">
-        <h3>Task of the Day</h3>
-        <img src="" alt="Task Preview" id="taskImg">
-        <input type="file" accept="image/*" id="taskUpload">
-        <textarea placeholder="Optional note..." rows="2"></textarea>
-        <p class="tip">Highlight your main task for today</p>
-      </div>
+    <div class="card">
+      <h3>Workout of the Day</h3>
+      <img id="workoutImg">
+      <input type="file" id="workoutUpload" accept="image/*">
+    </div>
 
-      <div class="card">
-        <h3>Workout of the Day</h3>
-        <img src="" alt="Workout Preview" id="workoutImg">
-        <input type="file" accept="image/*" id="workoutUpload">
-        <textarea placeholder="Optional note..." rows="2"></textarea>
-        <p class="tip">Your visual motivation for movement</p>
-      </div>
+    <div class="card">
+      <h3>Meal of the Day</h3>
+      <img id="mealImg">
+      <input type="file" id="mealUpload" accept="image/*">
+    </div>
 
-      <div class="card">
-        <h3>Meal of the Day</h3>
-        <img src="" alt="Meal Preview" id="mealImg">
-        <input type="file" accept="image/*" id="mealUpload">
-        <textarea placeholder="Optional note..." rows="2"></textarea>
-        <p class="tip">Plan or imagine your meals</p>
-      </div>
+    <div class="card">
+      <h3>Priority of the Day</h3>
+      <img id="priorityImg">
+      <input type="file" id="priorityUpload" accept="image/*">
+    </div>
 
-      <div class="card">
-        <h3>Priority of the Day</h3>
-        <img src="" alt="Priority Preview" id="priorityImg">
-        <input type="file" accept="image/*" id="priorityUpload">
-        <textarea placeholder="Optional note..." rows="2"></textarea>
-        <p class="tip">What matters most today? Make it visual.</p>
-      </div>
+  </section>
 
-    </section>
+</main>
 
-    <!-- FOCUS STATE (HIDDEN INITIALLY) -->
-    <section class="focus-room locked" id="focusRoom">
-      <h1>Stay</h1>
-
-      <div class="timer" id="timer">
-        25:00
-      </div>
-
-      <p class="whisper" id="whisperText">
-        You don’t need motivation. You need presence.
-      </p>
-
-      <button id="endSessionBtn">
-        Leave Quietly
-      </button>
-    </section>
-
-  </main>
-
-  <!-- JS -->
-  <script src="script.js"></script>
-
+<script src="script.js"></script>
 </body>
 </html>
