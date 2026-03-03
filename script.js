@@ -1,5 +1,5 @@
 // =========================
-// THE PRIVATE ROOM + VISUAL BOARD – JS
+// THE PRIVATE ROOM + VISUAL BOARD – CLEAN JS
 // =========================
 
 // ---- ELEMENTS ----
@@ -10,7 +10,6 @@ const leaveBtn = document.getElementById("endSessionBtn");
 const input = document.getElementById("avoidanceInput");
 const timerEl = document.getElementById("timer");
 const whisperEl = document.getElementById("whisperText");
-
 const visualBoard = document.getElementById("visualBoard");
 
 // ---- TIMER STATE ----
@@ -18,13 +17,13 @@ const SESSION_MINUTES = 25;
 let totalSeconds = SESSION_MINUTES * 60;
 let timerInterval = null;
 
-// ---- TIME-ALIGNED WHISPERS ----
+// ---- WHISPERS ----
 const whispers = {
-  1500: "Begin without adjusting anything.",      // 25:00
-  1200: "Your mind is louder before it settles.", // 20:00
-  900:  "This discomfort is temporary.",          // 15:00
-  600:  "You are already past the hardest part.", // 10:00
-  300:  "Finish clean. No rushing."               // 05:00
+  1500: "Begin without adjusting anything.",
+  1200: "Your mind is louder before it settles.",
+  900:  "This discomfort is temporary.",
+  600:  "You are already past the hardest part.",
+  300:  "Finish clean. No rushing."
 };
 
 // ---- FORMAT TIME ----
@@ -50,8 +49,6 @@ function startTimer() {
     if (totalSeconds <= 0) {
       clearInterval(timerInterval);
       whisperEl.textContent = "You stayed. That matters.";
-      // Optional: Reveal visual board automatically when timer ends
-      showVisualBoard();
     }
   }, 1000);
 }
@@ -63,91 +60,58 @@ function enterRoom() {
     return;
   }
 
-  // fade out entry
-  entrySection.style.opacity = "0";
-  entrySection.style.pointerEvents = "none";
+  entrySection.style.display = "none";
+  focusRoom.style.display = "block";
 
-  setTimeout(() => {
-    entrySection.style.display = "none";
-
-    focusRoom.classList.remove("locked");
-    focusRoom.style.display = "block";
-
-    // soft lock outside world
-    document.body.style.pointerEvents = "none";
-    focusRoom.style.pointerEvents = "auto";
-
-    startTimer();
-  }, 500);
+  startTimer();
 }
 
 // ---- LEAVE ROOM ----
 function leaveRoom() {
   clearInterval(timerInterval);
 
-  // reset timer state
   totalSeconds = SESSION_MINUTES * 60;
   timerEl.textContent = formatTime(totalSeconds);
   whisperEl.textContent = "You don’t need motivation. You need presence.";
 
-  // unlock world
-  document.body.style.pointerEvents = "auto";
-
-  // reset UI
   focusRoom.style.display = "none";
-  focusRoom.classList.add("locked");
-
   entrySection.style.display = "block";
-  setTimeout(() => {
-    entrySection.style.opacity = "1";
-    entrySection.style.pointerEvents = "auto";
-  }, 50);
-
-  input.value = "";
 }
 
 // ---- EVENTS ----
 enterBtn.addEventListener("click", enterRoom);
 leaveBtn.addEventListener("click", leaveRoom);
+
 input.addEventListener("keydown", (e) => {
   if (e.key === "Enter") enterRoom();
 });
 
 // =========================
-// VISUAL DAILY BOARD
+// VISUAL BOARD
 // =========================
 
-// ---- CREATE "ENTER VISUAL DAY" BUTTON ----
-const visualEnterBtn = document.createElement("button");
-visualEnterBtn.textContent = "Enter Visual Day";
-visualEnterBtn.style.marginTop = "2rem";
-visualEnterBtn.style.padding = "0.9rem 1.8rem";
-visualEnterBtn.style.borderRadius = "999px";
-visualEnterBtn.style.border = "none";
-visualEnterBtn.style.background = "linear-gradient(135deg, var(--accent-soft), var(--accent-strong))";
-visualEnterBtn.style.color = "#fff";
-visualEnterBtn.style.cursor = "pointer";
-visualEnterBtn.style.fontFamily = "var(--font-secondary)";
-visualEnterBtn.style.transition = "0.3s ease";
-visualEnterBtn.onmouseover = () => visualEnterBtn.style.opacity = 0.9;
-visualEnterBtn.onmouseout = () => visualEnterBtn.style.opacity = 1;
+// Create button once DOM is loaded
+document.addEventListener("DOMContentLoaded", () => {
 
-// append under entry section
-entrySection.appendChild(visualEnterBtn);
+  const visualEnterBtn = document.createElement("button");
+  visualEnterBtn.textContent = "Enter Visual Day";
+  visualEnterBtn.style.marginTop = "2rem";
 
-// ---- FUNCTION: Reveal the visual board ----
-function showVisualBoard() {
-  visualBoard.style.display = "grid"; // immediately visible
-  setTimeout(() => {
-    visualBoard.classList.add("active"); // animate opacity/transform
-  }, 50);
-}
+  entrySection.appendChild(visualEnterBtn);
 
-// click event for button
-visualEnterBtn.addEventListener("click", showVisualBoard);
+  visualEnterBtn.addEventListener("click", () => {
+    visualBoard.style.display = "grid";
+    setTimeout(() => {
+      visualBoard.classList.add("active");
+    }, 10);
+  });
+
+});
 
 // ---- IMAGE UPLOAD HANDLER ----
 function handleImageUpload(inputEl, imgEl) {
+  if (!inputEl || !imgEl) return;
+
   inputEl.addEventListener("change", () => {
     const file = inputEl.files[0];
     if (!file) return;
@@ -160,7 +124,7 @@ function handleImageUpload(inputEl, imgEl) {
   });
 }
 
-// ---- ATTACH UPLOAD HANDLERS TO CARDS ----
+// ---- ATTACH UPLOADS ----
 const cardMappings = [
   {inputId: "outfitUpload", imgId: "outfitImg"},
   {inputId: "hobbyUpload", imgId: "hobbyImg"},
