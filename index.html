@@ -5,32 +5,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Private Room</title>
 
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<main class="container">
+  <main class="private-room">
 
-  <!-- ENTRY -->
-  <section id="entry">
-    <h1>The Private Room</h1>
-    <p class="prompt">What are you avoiding today?</p>
+    <!-- ENTRY SECTION -->
+    <section class="entry" id="entry">
+      <h1>The Private Room</h1>
+      <p class="prompt">What are you avoiding today?</p>
 
-    <input type="text" id="avoidanceInput" placeholder="Say it quietly.">
-    <button id="enterRoomBtn">Enter</button>
+      <input
+        type="text"
+        id="avoidanceInput"
+        placeholder="Say it quietly. No one else will see this."
+        autocomplete="off"
+      />
 
-    <button onclick="window.location.href='index2.html'">
-  Enter Visual Day
-</button>
-  </section>
+      <button id="enterRoomBtn">Enter</button>
 
-  <!-- FOCUS ROOM -->
-  <section id="focusRoom" class="hidden">
-    <h1>Stay</h1>
-    <div id="timer">25:00</div>
-    <p id="whisperText">You don’t need motivation. You need presence.</p>
-    <button id="endSessionBtn">Leave Quietly</button>
-  </section>
+      <!-- BUTTON TO VISUAL BOARD -->
+      <button id="visualBoardBtn" onclick="window.location.href='index2.html'">
+        Enter Visual Day
+      </button>
 
-  
+      <p class="footer-note">This space responds to honesty.</p>
+    </section>
+
+    <!-- FOCUS ROOM SECTION (TIMER) -->
+    <section class="focus-room hidden" id="focusRoom">
+      <h1>Stay</h1>
+      <div class="timer" id="timer">25:00</div>
+      <p class="whisper" id="whisperText">You don’t need motivation. You need presence.</p>
+      <button id="endSessionBtn">Leave Quietly</button>
+    </section>
+
+  </main>
+
+  <!-- JS -->
+  <script src="script.js"></script>
+
+</body>
+</html>
