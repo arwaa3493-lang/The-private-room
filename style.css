@@ -1,297 +1,94 @@
-/* =========================
-   THE PRIVATE ROOM – CSS
-   ========================= */
-
-/* ---- RESET ---- */
-*,
-*::before,
-*::after {
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* ---- ROOT VARIABLES ---- */
 :root {
-  --bg-main: #f7f3ef;
-  --bg-overlay: rgba(255, 255, 255, 0.85);
-  --accent-soft: #d8b4a0;
-  --accent-strong: #b08968;
-  --text-main: #2f2f2f;
-  --text-muted: #7a7a7a;
-  --border-soft: rgba(0, 0, 0, 0.08);
-
-  --font-main: "Playfair Display", serif;
-  --font-secondary: "Inter", sans-serif;
-
-  --transition-slow: 0.6s ease;
-  --transition-fast: 0.25s ease;
+  --accent: #b08968;
+  --soft: #f7f3ef;
 }
 
-/* ---- BODY ---- */
 body {
+  font-family: "Inter", sans-serif;
+  background: var(--soft);
   min-height: 100vh;
-  background: radial-gradient(circle at top, #fff 0%, var(--bg-main) 55%);
-  font-family: var(--font-secondary);
-  color: var(--text-main);
+  overflow-y: auto;
   display: flex;
-  align-items: center;
   justify-content: center;
-  overflow: hidden;
+  padding: 40px 20px;
 }
 
-/* ---- MAIN CONTAINER ---- */
-.private-room {
-  background: var(--bg-overlay);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  width: min(92%, 520px);
-  padding: 3.5rem 3rem;
-  border-radius: 28px;
-  border: 1px solid var(--border-soft);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), inset 0 0 0 1px rgba(255, 255, 255, 0.4);
-  animation: fadeIn 1.2s ease forwards;
+.container {
+  width: 100%;
+  max-width: 600px;
 }
 
-/* ---- TITLE ---- */
-.private-room h1 {
-  font-family: var(--font-main);
-  font-size: 1.8rem;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  margin-bottom: 2.2rem;
+h1 {
+  font-family: "Playfair Display", serif;
   text-align: center;
+  margin-bottom: 20px;
 }
 
-/* ---- PROMPT TEXT ---- */
 .prompt {
-  font-size: 0.95rem;
-  color: var(--text-muted);
   text-align: center;
-  margin-bottom: 1.8rem;
+  margin-bottom: 15px;
+  color: #777;
 }
 
-/* ---- INPUT ---- */
-input[type="text"],
-textarea {
+input[type="text"] {
   width: 100%;
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid var(--border-soft);
-  padding: 0.8rem 0.2rem;
-  font-size: 1rem;
-  font-family: var(--font-secondary);
-  color: var(--text-main);
-  outline: none;
-  transition: border-color var(--transition-fast);
+  padding: 10px;
+  margin-bottom: 15px;
 }
 
-input::placeholder,
-textarea::placeholder {
-  color: #b0b0b0;
-  font-style: italic;
-}
-
-input:focus,
-textarea:focus {
-  border-bottom-color: var(--accent-strong);
-}
-
-/* ---- BUTTON ---- */
 button {
-  margin-top: 2.5rem;
   width: 100%;
-  padding: 0.9rem;
-  border-radius: 999px;
+  padding: 12px;
+  margin-bottom: 12px;
   border: none;
-  background: linear-gradient(135deg, var(--accent-soft), var(--accent-strong));
-  color: #fff;
-  font-size: 0.9rem;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+  background: var(--accent);
+  color: white;
   cursor: pointer;
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast), opacity var(--transition-fast);
 }
 
-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(176, 137, 104, 0.35);
-  opacity: 0.95;
+.secondary-btn {
+  background: #ddd;
+  color: black;
 }
 
-button:active {
-  transform: translateY(0);
-  box-shadow: none;
-}
-
-/* ---- TIMER / FOCUS MODE ---- */
-.focus-room {
-  text-align: center;
-  display: none; /* hidden initially, JS shows it */
-  animation: fadeIn 0.8s ease forwards;
-}
-
-.timer {
-  font-family: var(--font-main);
+#timer {
   font-size: 3rem;
-  margin: 2rem 0;
-  letter-spacing: 2px;
-}
-
-.whisper {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  font-style: italic;
-  max-width: 80%;
-  margin: 0 auto;
-}
-
-/* ---- LOCKED STATE ---- */
-.locked {
-  opacity: 0.45;
-  pointer-events: none;
-}
-
-/* ---- FOOTNOTE ---- */
-.footer-note {
-  margin-top: 2.5rem;
-  font-size: 0.75rem;
   text-align: center;
-  color: #a0a0a0;
+  margin: 20px 0;
 }
 
-/* ---- ANIMATIONS ---- */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.hidden {
+  display: none;
 }
 
-/* ---- RESPONSIVE ---- */
-@media (max-width: 480px) {
-  .private-room {
-    padding: 2.5rem 2rem;
-  }
+/* VISUAL BOARD */
 
-  .timer {
-    font-size: 2.4rem;
-  }
-}
-
-/* =========================
-   VISUAL DAILY BOARD – CSS
-   ========================= */
-
-/* ---- BOARD CONTAINER ---- */
-.visual-board {
+#visualBoard {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1.2rem;
-  margin-top: 2.5rem;
-  padding-bottom: 3rem;
-  transition: opacity 0.6s ease, transform 0.6s ease;
-  opacity: 0; /* hidden by default */
-  transform: translateY(20px);
-  display: none; /* JS sets display:block on active */
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 15px;
+  margin-top: 30px;
 }
 
-/* visible state */
-.visual-board.active {
-  opacity: 1;
-  transform: translateY(0);
-  display: grid;
-}
-
-/* ---- SINGLE CARD ---- */
 .card {
-  background: var(--bg-overlay);
-  border-radius: 18px;
-  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.07);
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 18px 28px rgba(0, 0, 0, 0.1);
-}
-
-/* ---- CARD TITLE ---- */
-.card h3 {
-  font-family: var(--font-main);
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: var(--text-main);
-  margin-bottom: 0.8rem;
+  background: white;
+  padding: 10px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
   text-align: center;
 }
 
-/* ---- CARD IMAGE PREVIEW ---- */
 .card img {
   width: 100%;
-  height: 140px;
+  height: 120px;
   object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 0.7rem;
-  transition: transform 0.3s ease;
-}
-
-.card img:hover {
-  transform: scale(1.03);
-}
-
-/* ---- CARD NOTE / TEXTAREA ---- */
-.card textarea {
-  width: 100%;
-  border: 1px solid var(--border-soft);
-  border-radius: 10px;
-  padding: 0.6rem;
-  font-size: 0.85rem;
-  resize: none;
-  font-family: var(--font-secondary);
-  outline: none;
-  transition: border-color var(--transition-fast);
-}
-
-.card textarea:focus {
-  border-color: var(--accent-strong);
-}
-
-/* ---- IMAGE UPLOAD BUTTON ---- */
-.card input[type="file"] {
-  margin-top: 0.6rem;
-  font-size: 0.8rem;
-  cursor: pointer;
-}
-
-/* ---- SMALL CARD TIP ---- */
-.card .tip {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  text-align: center;
-  margin-top: 0.4rem;
-}
-
-/* ---- RESPONSIVE ---- */
-@media (max-width: 480px) {
-  .card img {
-    height: 120px;
-  }
-
-  .card h3 {
-    font-size: 1rem;
-  }
-
-  .card textarea {
-    font-size: 0.8rem;
-  }
+  margin-bottom: 8px;
+  border-radius: 8px;
+  background: #eee;
 }
