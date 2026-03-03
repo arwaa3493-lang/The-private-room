@@ -158,56 +158,64 @@ button:hover {
   display: none;
 }
 
-/* VISUAL BOARD */
+/* ===== HORIZONTAL PINTEREST-STYLE BOARD ===== */
+
 #visualBoard {
-  margin-top: 2.5rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-  gap: 1.5rem;
-  animation: fadeIn 1s ease forwards;
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
+  padding: 2rem 1rem;
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbar but keep scroll */
+#visualBoard::-webkit-scrollbar {
+  height: 6px;
+}
+
+#visualBoard::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#visualBoard::-webkit-scrollbar-thumb {
+  background: rgba(176,137,104,0.4);
+  border-radius: 10px;
 }
 
 /* Cards */
 .card {
-  background: rgba(255,255,255,0.7);
-  backdrop-filter: blur(12px);
-  padding: 1.2rem;
-  border-radius: 24px;
-  box-shadow: 0 15px 30px rgba(0,0,0,0.08);
-  text-align: center;
-  transition: all 0.35s ease;
+  min-width: 280px;
+  max-width: 280px;
+  height: 420px;
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(15px);
+  border-radius: 26px;
+  padding: 1.5rem;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.4s ease;
   position: relative;
-  overflow: hidden;
 }
 
 .card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 25px 40px rgba(0,0,0,0.12);
-}
-
-/* Elegant top highlight */
-.card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 4px;
-  width: 100%;
-  background: linear-gradient(90deg, var(--accent-soft), var(--accent));
-  opacity: 0.6;
+  transform: translateY(-8px);
+  box-shadow: 0 30px 50px rgba(0,0,0,0.12);
 }
 
 .card h3 {
-  margin-bottom: 0.9rem;
+  text-align: center;
   font-weight: 500;
+  margin-bottom: 1rem;
 }
 
+/* Image Area */
 .card img {
   width: 100%;
-  height: 140px;
+  height: 220px;
   object-fit: cover;
   border-radius: 18px;
-  margin-bottom: 0.8rem;
   background: #eee;
   transition: transform 0.4s ease;
 }
@@ -216,25 +224,37 @@ button:hover {
   transform: scale(1.03);
 }
 
+/* Upload Button inside card */
+.card input[type="file"] {
+  display: none;
+}
+
+.card label {
+  margin-top: 1rem;
+  display: block;
+  text-align: center;
+  padding: 0.7rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #d6b8a2, #b08968);
+  color: white;
+  font-family: "Times New Roman", Times, serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.card label:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(176,137,104,0.35);
+}
+
+/* Textarea */
 .card textarea {
-  width: 100%;
-  border: none;
+  margin-top: 1rem;
   resize: none;
-  background: rgba(255,255,255,0.6);
+  border: none;
   border-radius: 14px;
   padding: 0.6rem;
+  background: rgba(255,255,255,0.6);
   font-family: "Times New Roman", Times, serif;
-  margin-bottom: 0.5rem;
   outline: none;
-}
-
-.card input[type="file"] {
-  font-family: "Times New Roman", Times, serif;
-  font-size: 0.8rem;
-}
-
-.tip {
-  font-size: 0.75rem;
-  color: var(--muted);
-  font-style: italic;
 }
