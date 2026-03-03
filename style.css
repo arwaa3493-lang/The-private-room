@@ -265,6 +265,10 @@ body:has(#visualBoard) .private-room {
   width: 100%;
   padding: 3rem 4rem;
 }
+.vision-wrapper {
+  width: 100%;
+  padding: 3rem 4rem;
+}
 
 /* Make board truly horizontal */
 #visualBoard {
