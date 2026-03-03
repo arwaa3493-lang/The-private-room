@@ -258,3 +258,26 @@ button:hover {
   font-family: "Times New Roman", Times, serif;
   outline: none;
 }
+/* ===== VISION BOARD FULL WIDTH FIX ===== */
+
+body:has(#visualBoard) .private-room {
+  max-width: 100%;
+  width: 100%;
+  padding: 3rem 4rem;
+}
+
+/* Make board truly horizontal */
+#visualBoard {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 2rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+/* Ensure cards stay side by side */
+.card {
+  flex: 0 0 auto;
+}
