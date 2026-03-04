@@ -340,3 +340,29 @@ body:has(#visualBoard) .private-room {
   box-shadow: 0 10px 20px rgba(176,137,104,0.4);
   transform: scale(1.05);
 }
+/* ADD HABIT INPUT */
+
+.add-habit {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.add-habit input {
+  flex: 1;
+  padding: 0.8rem;
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,0.15);
+  font-family: "Times New Roman", Times, serif;
+  background: rgba(255,255,255,0.6);
+  outline: none;
+}
+
+.habit-name {
+  border: none;
+  background: transparent;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 1.1rem;
+  outline: none;
+  width: 200px;
+}
