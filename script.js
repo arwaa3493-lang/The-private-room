@@ -54,4 +54,24 @@ endBtn.addEventListener("click", () => {
   focusRoom.classList.add("hidden");
   entry.classList.remove("hidden");
   resetTimer();
+// ===== HERO IMAGE UPLOAD =====
+const heroUpload = document.getElementById("heroUpload");
+const heroImage = document.getElementById("heroImage");
+
+// Load saved image if exists
+const savedHero = localStorage.getItem("heroImage");
+if (savedHero) {
+  heroImage.src = savedHero;
+}
+
+heroUpload.addEventListener("change", function () {
+  const file = this.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    heroImage.src = e.target.result;
+    localStorage.setItem("heroImage", e.target.result);
+  };
+  reader.readAsDataURL(file);
 });
