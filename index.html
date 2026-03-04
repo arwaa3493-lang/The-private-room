@@ -1,59 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Private Room</title>
+<main class="private-room">
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <!-- HERO IMAGE -->
+  <div class="hero-section">
+    <img id="heroImage" src="https://images.unsplash.com/photo-1509042239860-f550ce710b93" alt="Aesthetic Space">
+    <input type="file" id="heroUpload" accept="image/*">
+    <label for="heroUpload" class="change-photo">Change Photo</label>
+  </div>
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+  <!-- ENTRY SECTION -->
+  <section class="entry" id="entry">
+    <h1>The Private Room</h1>
+    <p class="prompt">What are you avoiding today?</p>
 
-  <main class="private-room">
+    <input
+      type="text"
+      id="avoidanceInput"
+      placeholder="Say it quietly. No one else will see this."
+      autocomplete="off"
+    />
 
-    <!-- ENTRY SECTION -->
-    <section class="entry" id="entry">
-      <h1>The Private Room</h1>
-      <p class="prompt">What are you avoiding today?</p>
+    <button id="enterRoomBtn">Enter</button>
 
-      <input
-        type="text"
-        id="avoidanceInput"
-        placeholder="Say it quietly. No one else will see this."
-        autocomplete="off"
-      />
+    <button onclick="window.location.href='vision.html'">
+      Enter Visual Day
+    </button>
 
-      <button id="enterRoomBtn">Enter</button>
+    <button onclick="window.location.href='habits.html'">
+      Enter Habit Ritual
+    </button>
 
-      <!-- BUTTON TO VISUAL BOARD -->
-      <button id="visualBoardBtn" onclick="window.location.href='vision.html'">
-        Enter Visual Day
-      </button>
+    <p class="footer-note">This space responds to honesty.</p>
+  </section>
 
-   <!-- Habit tracker button -->
-<button onclick="window.location.href='habits.html'">
-  Enter Habit Ritual
-</button>
+  <!-- FOCUS ROOM -->
+  <section class="focus-room hidden" id="focusRoom">
+    <h1>Stay</h1>
+    <div class="timer" id="timer">25:00</div>
+    <p class="whisper" id="whisperText">
+      You don’t need motivation. You need presence.
+    </p>
+    <button id="endSessionBtn">Leave Quietly</button>
+  </section>
 
-      <p class="footer-note">Lets ignite your prime.</p>
-    </section>
-
-    <!-- FOCUS ROOM SECTION (TIMER) -->
-    <section class="focus-room hidden" id="focusRoom">
-      <h1>Stay</h1>
-      <div class="timer" id="timer">25:00</div>
-      <p class="whisper" id="whisperText">You don’t need motivation. You need presence.</p>
-      <button id="endSessionBtn">Leave Quietly</button>
-    </section>
-
-  </main>
-
-  <!-- JS -->
-  <script src="script.js"></script>
-
-</body>
-</html>
+</main>
