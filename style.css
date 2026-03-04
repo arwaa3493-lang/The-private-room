@@ -413,3 +413,84 @@ body:has(#visualBoard) .private-room {
   transform: translateY(-2px);
   box-shadow: 0 10px 20px rgba(0,0,0,0.15);
 }
+/* ===== CALENDAR ===== */
+
+.calendar-box {
+  margin-top: 2rem;
+  padding: 1.2rem;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(10px);
+  font-family: "Times New Roman", Times, serif;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* ===== TO DO LIST ===== */
+
+.todo-box {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  font-family: "Times New Roman", Times, serif;
+}
+
+.todo-box h2 {
+  margin-bottom: 1rem;
+}
+
+.add-todo {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+#todoList {
+  list-style: none;
+  padding: 0;
+}
+
+#todoList li {
+  padding: 0.5rem 0;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+#todoList li.done {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+/* ===== HABITS ===== */
+
+.habit-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.habit-boxes {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.box {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  background: rgba(255,255,255,0.5);
+  transition: 0.2s ease;
+}
+
+.box:hover {
+  transform: scale(1.1);
+}
