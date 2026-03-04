@@ -1,15 +1,67 @@
+// ===== DATE & CALENDAR =====
+const dateElement = document.getElementById("currentDate");
+const todoHeader = document.getElementById("todoHeader");
+
+const today = new Date();
+const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+dateElement.textContent = today.toLocaleDateString(undefined, options);
+todoHeader.textContent = today.toLocaleDateString(undefined, { weekday: 'long' }) + " Tasks";
+
+// ===== TO DO LIST =====
+const todoInput = document.getElementById("todoInput");
+const addTodoBtn = document.getElementById("addTodoBtn");
+const todoList = document.getElementById("todoList");
+
+let todos = JSON.parse(localStorage.getItem("todos")) || [];
+
+function saveTodos() {
+  localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+function renderTodos() {
+  todoList.innerHTML = "";
+  todos.forEach((todo, index) => {
+    const li = document.createElement("li");
+    li.textContent = todo.text;
+
+    if (todo.done) {
+      li.classList.add("done");
+    }
+
+    li.addEventListener("click", () => {
+      todos[index].done = !todos[index].done;
+      saveTodos();
+      renderTodos();
+    });
+
+    todoList.appendChild(li);
+  });
+}
+
+addTodoBtn.addEventListener("click", () => {
+  const text = todoInput.value.trim();
+  if (!text) return;
+
+  todos.push({ text, done: false });
+  todoInput.value = "";
+  saveTodos();
+  renderTodos();
+});
+
+renderTodos();
+
+
+// ===== HABITS =====
 const habitContainer = document.getElementById("habitContainer");
 const addHabitBtn = document.getElementById("addHabitBtn");
 const newHabitInput = document.getElementById("newHabitInput");
 
 let habits = JSON.parse(localStorage.getItem("habits")) || [];
 
-// Save to localStorage
 function saveHabits() {
   localStorage.setItem("habits", JSON.stringify(habits));
 }
 
-// Create habit row
 function renderHabits() {
   habitContainer.innerHTML = "";
 
@@ -33,10 +85,10 @@ function renderHabits() {
     habit.days.forEach((day, dayIndex) => {
       const box = document.createElement("div");
       box.className = "box";
-      if (day) box.classList.add("active");
+      box.textContent = day ? "✅" : "";
 
       box.addEventListener("click", () => {
-        habits[habitIndex].days[dayIndex] = !habits[habitIndex].days[dayIndex];
+        habits[habitIndex].days[dayIndex] = !habit.days[dayIndex];
         saveHabits();
         renderHabits();
       });
@@ -50,7 +102,6 @@ function renderHabits() {
   });
 }
 
-// Add habit
 addHabitBtn.addEventListener("click", () => {
   const habitName = newHabitInput.value.trim();
   if (!habitName) return;
