@@ -285,3 +285,58 @@ body:has(#visualBoard) .private-room {
 .card {
   flex: 0 0 auto;
 }
+/* ===== HABIT TRACKER ===== */
+
+.habit-wrapper {
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+  padding: 3rem 4rem;
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: blur(20px);
+  border-radius: 32px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.08);
+  animation: fadeIn 0.8s ease;
+}
+
+.habit-container {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.habit-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 1.1rem;
+}
+
+.habit-boxes {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.box {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.15);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: rgba(255,255,255,0.7);
+}
+
+.box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(176,137,104,0.25);
+}
+
+.box.active {
+  background: linear-gradient(135deg, #d6b8a2, #b08968);
+  border: none;
+  box-shadow: 0 10px 20px rgba(176,137,104,0.4);
+  transform: scale(1.05);
+}
