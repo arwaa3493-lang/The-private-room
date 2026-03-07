@@ -538,6 +538,71 @@ cursor:pointer;
 box-shadow:0 5px 15px rgba(0,0,0,0.1);
 }
 
+/* ---------- GLOBAL ---------- */
+
+body{
+margin:0;
+font-family: Georgia, serif;
+overflow-x:hidden;
+color:#2d2d2d;
+}
+
+/* ---------- BACKGROUND ---------- */
+
+.background-layer{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:linear-gradient(135deg,#e8e2d8,#d7cfc4);
+background-size:cover;
+background-position:center;
+z-index:-1;
+transition:all 0.6s ease;
+}
+
+/* ---------- MAIN ROOM ---------- */
+
+.room-container{
+max-width:1100px;
+margin:auto;
+padding:40px;
+text-align:center;
+}
+
+.room-title{
+font-size:42px;
+letter-spacing:2px;
+margin-bottom:25px;
+}
+
+/* ---------- CONTROLS ---------- */
+
+.room-controls{
+margin-bottom:30px;
+}
+
+#bgUpload{
+display:none;
+}
+
+.upload-btn{
+padding:10px 20px;
+border-radius:30px;
+background:white;
+cursor:pointer;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+transition:all 0.25s ease;
+}
+
+.upload-btn:hover{
+transform:translateY(-2px);
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* ---------- PINTEREST LAYOUT ---------- */
+
 .dashboard{
 column-count:3;
 column-gap:25px;
@@ -557,13 +622,15 @@ column-count:1;
 }
 }
 
+/* ---------- CARDS ---------- */
+
 .card{
 display:inline-block;
 width:100%;
 margin-bottom:25px;
 background:rgba(255,255,255,0.65);
 backdrop-filter:blur(18px);
-padding:30px;
+padding:25px;
 border-radius:20px;
 box-shadow:0 10px 30px rgba(0,0,0,0.1);
 transition:all 0.3s ease;
@@ -575,7 +642,69 @@ transform:translateY(-6px);
 box-shadow:0 20px 40px rgba(0,0,0,0.15);
 }
 
+.card h2{
+margin-top:10px;
+font-weight:500;
+}
+
+/* ---------- CARD BANNERS ---------- */
+
+.card-banner{
+height:120px;
+border-radius:16px;
+display:flex;
+align-items:center;
+justify-content:center;
+margin-bottom:15px;
+overflow:hidden;
+}
+
+.card-banner img{
+width:70px;
+opacity:0.95;
+transition:transform 0.3s ease;
+}
+
+.card:hover .card-banner img{
+transform:scale(1.1);
+}
+
+/* ---------- BANNER COLORS ---------- */
+
+.timer-banner{
+background:linear-gradient(135deg,#ffd7c2,#ff9f80);
+}
+
+.vision-banner{
+background:linear-gradient(135deg,#c7d2ff,#8ea2ff);
+}
+
+.habit-banner{
+background:linear-gradient(135deg,#d9f5d2,#9ddf8f);
+}
+
+/* ---------- TIMER ---------- */
+
 .timer{
-font-size:40px;
-margin:20px 0;
+font-size:42px;
+margin:15px 0;
+letter-spacing:2px;
+}
+
+/* ---------- BUTTONS ---------- */
+
+button{
+padding:10px 18px;
+border:none;
+border-radius:20px;
+background:#2d2d2d;
+color:white;
+cursor:pointer;
+font-size:14px;
+transition:all 0.25s ease;
+}
+
+button:hover{
+transform:translateY(-2px);
+box-shadow:0 6px 15px rgba(0,0,0,0.2);
 }
