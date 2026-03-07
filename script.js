@@ -54,4 +54,30 @@ endBtn.addEventListener("click", () => {
   focusRoom.classList.add("hidden");
   entry.classList.remove("hidden");
   resetTimer();
+const bgUpload = document.getElementById("bgUpload");
+const backgroundLayer = document.getElementById("backgroundLayer");
+
+const savedBackground = localStorage.getItem("roomBackground");
+
+if(savedBackground){
+backgroundLayer.style.backgroundImage = `url(${savedBackground})`;
+}
+
+bgUpload.addEventListener("change", function(){
+
+const file = this.files[0];
+
+if(!file) return;
+
+const reader = new FileReader();
+
+reader.onload = function(e){
+
+backgroundLayer.style.backgroundImage = `url(${e.target.result})`;
+
+localStorage.setItem("roomBackground", e.target.result);
+
+}
+
+reader.readAsDataURL(file);
 });
