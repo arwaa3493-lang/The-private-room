@@ -1,3 +1,6 @@
+/* =========================================
+   1. RESET & VARIABLES
+   ========================================= */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -5,26 +8,31 @@
 }
 
 :root {
+  /* Palette */
   --bg-1: #f8f4f1;
   --bg-2: #f1e8e2;
   --accent: #b08968;
   --accent-soft: #d6b8a2;
   --text: #2b2b2b;
   --muted: #7a7a7a;
-  --glass: rgba(255, 255, 255, 0.6);
+  --glass: rgba(255, 255, 255, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.5);
+  
+  /* Fonts */
+  --font-main: "Times New Roman", Times, serif;
 }
 
-/* Animated Background */
+/* =========================================
+   2. BODY & BACKGROUND
+   ========================================= */
 body {
-  font-family: "Times New Roman", Times, serif;
+  font-family: var(--font-main);
   background: linear-gradient(-45deg, var(--bg-1), var(--bg-2), #ffffff, #f5ede8);
   background-size: 400% 400%;
   animation: gradientShift 18s ease infinite;
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  padding: 60px 20px;
   color: var(--text);
+  overflow-x: hidden;
 }
 
 @keyframes gradientShift {
@@ -33,18 +41,22 @@ body {
   100% { background-position: 0% 50%; }
 }
 
-/* Container */
+/* =========================================
+   3. LAYOUT & CONTAINERS
+   ========================================= */
 .container,
-.private-room {
+.private-room,
+.habit-wrapper {
   width: 100%;
-  max-width: 560px;
+  max-width: 1100px; /* Wider for masonry layout */
+  margin: 0 auto;
+  padding: 3rem 2rem;
   background: var(--glass);
   backdrop-filter: blur(18px);
-  padding: 3rem 2.5rem;
   border-radius: 32px;
   box-shadow:
     0 25px 50px rgba(0,0,0,0.08),
-    inset 0 0 0 1px rgba(255,255,255,0.5);
+    inset 0 0 0 1px var(--glass-border);
   animation: fadeIn 1s ease forwards;
 }
 
@@ -53,7 +65,224 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Headings */
+/* =========================================
+   4. HERO SECTION
+   ========================================= */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  margin-bottom: 2.5rem;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+}
+
+.hero-section img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.hero-section:hover img {
+  transform: scale(1.05);
+}
+
+#heroUpload { display: none; }
+
+.change-photo {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(10px);
+  font-family: var(--font-main);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.change-photo:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* =========================================
+   5. VISION BOARD (MASONRY LAYOUT)
+   ========================================= */
+/* Switching from horizontal scroll to masonry grid */
+#visualBoard {
+  column-count: 3;
+  column-gap: 2rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 900px) {
+  #visualBoard { column-count: 2; }
+}
+
+@media (max-width: 600px) {
+  #visualBoard { column-count: 1; }
+}
+
+.card {
+  break-inside: avoid;
+  margin-bottom: 2rem;
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(15px);
+  border-radius: 26px;
+  padding: 1.5rem;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.4s ease;
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 50px rgba(0,0,0,0.12);
+}
+
+.card h3 {
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 18px;
+  background: #eee;
+  transition: transform 0.4s ease;
+}
+
+.card:hover img {
+  transform: scale(1.03);
+}
+
+.card input[type="file"] { display: none; }
+
+.card label {
+  margin-top: 1rem;
+  display: block;
+  text-align: center;
+  padding: 0.7rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent-soft), var(--accent));
+  color: white;
+  font-family: var(--font-main);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.card label:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(176,137,104,0.35);
+}
+
+.card textarea {
+  margin-top: 1rem;
+  resize: none;
+  border: none;
+  border-radius: 14px;
+  padding: 0.6rem;
+  background: rgba(255,255,255,0.6);
+  font-family: var(--font-main);
+  outline: none;
+}
+
+/* =========================================
+   6. TIMER
+   ========================================= */
+#timer {
+  font-size: 3.5rem;
+  text-align: center;
+  margin: 2.5rem 0;
+  font-family: var(--font-main);
+  letter-spacing: 2px;
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { text-shadow: 0 0 0 rgba(176,137,104,0); }
+  50% { text-shadow: 0 0 18px rgba(176,137,104,0.35); }
+}
+
+/* =========================================
+   7. HABIT TRACKER
+   ========================================= */
+.habit-wrapper {
+  margin-top: 3rem;
+}
+
+.habit-container {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.habit-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-main);
+  font-size: 1.1rem;
+}
+
+.habit-boxes {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.box {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.15);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: rgba(255,255,255,0.7);
+}
+
+.box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(176,137,104,0.25);
+}
+
+.box.active {
+  background: linear-gradient(135deg, var(--accent-soft), var(--accent));
+  border: none;
+  box-shadow: 0 10px 20px rgba(176,137,104,0.4);
+  transform: scale(1.05);
+}
+
+.add-habit {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.add-habit input {
+  flex: 1;
+  padding: 0.8rem;
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,0.15);
+  font-family: var(--font-main);
+  background: rgba(255,255,255,0.6);
+  outline: none;
+}
+
+/* =========================================
+   8. UTILITIES & FORMS
+   ========================================= */
 h1 {
   text-align: center;
   font-weight: 500;
@@ -62,7 +291,6 @@ h1 {
   font-size: 2rem;
 }
 
-/* Prompt text */
 .prompt {
   text-align: center;
   color: var(--muted);
@@ -70,7 +298,6 @@ h1 {
   margin-bottom: 1.8rem;
 }
 
-/* Input */
 input[type="text"] {
   width: 100%;
   background: transparent;
@@ -79,7 +306,7 @@ input[type="text"] {
   padding: 0.8rem 0.2rem;
   margin-bottom: 2rem;
   font-size: 1rem;
-  font-family: "Times New Roman", Times, serif;
+  font-family: var(--font-main);
   outline: none;
   transition: all 0.3s ease;
 }
@@ -89,7 +316,6 @@ input[type="text"]:focus {
   box-shadow: 0 4px 12px rgba(176,137,104,0.15);
 }
 
-/* Buttons */
 button {
   width: 100%;
   padding: 0.9rem;
@@ -98,7 +324,7 @@ button {
   background: linear-gradient(135deg, var(--accent-soft), var(--accent));
   color: white;
   cursor: pointer;
-  font-family: "Times New Roman", Times, serif;
+  font-family: var(--font-main);
   font-size: 0.9rem;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -108,7 +334,6 @@ button {
   overflow: hidden;
 }
 
-/* Subtle shimmer effect */
 button::after {
   content: "";
   position: absolute;
@@ -138,308 +363,20 @@ button:hover {
   box-shadow: 0 15px 30px rgba(176,137,104,0.35);
 }
 
-/* TIMER */
-#timer {
-  font-size: 3.5rem;
-  text-align: center;
-  margin: 2.5rem 0;
-  font-family: "Times New Roman", Times, serif;
-  letter-spacing: 2px;
-  animation: pulseGlow 4s ease-in-out infinite;
-}
+.hidden { display: none; }
 
-@keyframes pulseGlow {
-  0%,100% { text-shadow: 0 0 0 rgba(176,137,104,0); }
-  50% { text-shadow: 0 0 18px rgba(176,137,104,0.35); }
-}
-
-/* Hidden utility */
-.hidden {
-  display: none;
-}
-
-/* ===== HORIZONTAL PINTEREST-STYLE BOARD ===== */
-
-#visualBoard {
-  display: flex;
-  gap: 2rem;
-  overflow-x: auto;
-  padding: 2rem 1rem;
-  scroll-behavior: smooth;
-}
-
-/* Hide scrollbar but keep scroll */
-#visualBoard::-webkit-scrollbar {
-  height: 6px;
-}
-
-#visualBoard::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-#visualBoard::-webkit-scrollbar-thumb {
-  background: rgba(176,137,104,0.4);
-  border-radius: 10px;
-}
-
-/* Cards */
-.card {
-  min-width: 280px;
-  max-width: 280px;
-  height: 420px;
-  background: rgba(255,255,255,0.75);
-  backdrop-filter: blur(15px);
-  border-radius: 26px;
-  padding: 1.5rem;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: all 0.4s ease;
-  position: relative;
-}
-
-.card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 30px 50px rgba(0,0,0,0.12);
-}
-
-.card h3 {
-  text-align: center;
-  font-weight: 500;
-  margin-bottom: 1rem;
-}
-
-/* Image Area */
-.card img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 18px;
-  background: #eee;
-  transition: transform 0.4s ease;
-}
-
-.card:hover img {
-  transform: scale(1.03);
-}
-
-/* Upload Button inside card */
-.card input[type="file"] {
-  display: none;
-}
-
-.card label {
-  margin-top: 1rem;
-  display: block;
-  text-align: center;
-  padding: 0.7rem;
-  border-radius: 999px;
-  background: linear-gradient(135deg, #d6b8a2, #b08968);
-  color: white;
-  font-family: "Times New Roman", Times, serif;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.card label:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 25px rgba(176,137,104,0.35);
-}
-
-/* Textarea */
-.card textarea {
-  margin-top: 1rem;
-  resize: none;
-  border: none;
-  border-radius: 14px;
-  padding: 0.6rem;
-  background: rgba(255,255,255,0.6);
-  font-family: "Times New Roman", Times, serif;
-  outline: none;
-}
-/* ===== VISION BOARD FULL WIDTH FIX ===== */
-
-body:has(#visualBoard) .private-room {
-  max-width: 100%;
-  width: 100%;
-  padding: 3rem 4rem;
-}
-.vision-wrapper {
-  width: 100%;
-  padding: 3rem 4rem;
-}
-
-/* Make board truly horizontal */
-#visualBoard {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  gap: 2rem;
-  overflow-x: auto;
-  overflow-y: hidden;
-  white-space: nowrap;
-}
-
-/* Ensure cards stay side by side */
-.card {
-  flex: 0 0 auto;
-}
-/* ===== HABIT TRACKER ===== */
-
-.habit-wrapper {
-  width: 100%;
-  max-width: 900px;
-  margin: auto;
-  padding: 3rem 4rem;
-  background: rgba(255,255,255,0.65);
-  backdrop-filter: blur(20px);
-  border-radius: 32px;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.08);
-  animation: fadeIn 0.8s ease;
-}
-
-.habit-container {
-  margin-top: 3rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.habit-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: "Times New Roman", Times, serif;
-  font-size: 1.1rem;
-}
-
-.habit-boxes {
-  display: flex;
-  gap: 0.8rem;
-}
-
-.box {
-  width: 32px;
-  height: 32px;
-  border-radius: 10px;
-  border: 1px solid rgba(0,0,0,0.15);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  background: rgba(255,255,255,0.7);
-}
-
-.box:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 18px rgba(176,137,104,0.25);
-}
-
-.box.active {
-  background: linear-gradient(135deg, #d6b8a2, #b08968);
-  border: none;
-  box-shadow: 0 10px 20px rgba(176,137,104,0.4);
-  transform: scale(1.05);
-}
-/* ADD HABIT INPUT */
-
-.add-habit {
-  margin-top: 2rem;
-  display: flex;
-  gap: 1rem;
-}
-
-.add-habit input {
-  flex: 1;
-  padding: 0.8rem;
-  border-radius: 14px;
-  border: 1px solid rgba(0,0,0,0.15);
-  font-family: "Times New Roman", Times, serif;
-  background: rgba(255,255,255,0.6);
-  outline: none;
-}
-
-.habit-name {
-  border: none;
-  background: transparent;
-  font-family: "Times New Roman", Times, serif;
-  font-size: 1.1rem;
-  outline: none;
-  width: 200px;
-}
-
-/* ===== HERO IMAGE SECTION ===== */
-
-.hero-section {
-  position: relative;
-  width: 100%;
-  height: 280px;
-  margin-bottom: 2.5rem;
-  border-radius: 28px;
-  overflow: hidden;
-  box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-}
-
-.hero-section img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s ease;
-}
-
-.hero-section:hover img {
-  transform: scale(1.05);
-}
-
-/* Hide actual input */
-#heroUpload {
-  display: none;
-}
-
-.change-photo {
-  position: absolute;
-  bottom: 15px;
-  right: 15px;
-  padding: 0.6rem 1.2rem;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.85);
-  backdrop-filter: blur(10px);
-  font-family: "Times New Roman", Times, serif;
-  font-size: 0.8rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.change-photo:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-}
-/* ===== CALENDAR ===== */
-
-.calendar-box {
+/* Calendar & Todo Styles */
+.calendar-box, .todo-box {
   margin-top: 2rem;
   padding: 1.2rem;
   border-radius: 20px;
   background: rgba(255,255,255,0.6);
   backdrop-filter: blur(10px);
-  font-family: "Times New Roman", Times, serif;
+  font-family: var(--font-main);
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
 
-/* ===== TO DO LIST ===== */
-
-.todo-box {
-  margin-top: 2rem;
-  padding: 1.5rem;
-  border-radius: 20px;
-  background: rgba(255,255,255,0.6);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-  font-family: "Times New Roman", Times, serif;
-}
-
-.todo-box h2 {
-  margin-bottom: 1rem;
-}
+.todo-box h2 { margin-bottom: 1rem; }
 
 .add-todo {
   display: flex;
@@ -447,264 +384,6 @@ body:has(#visualBoard) .private-room {
   margin-bottom: 1rem;
 }
 
-#todoList {
-  list-style: none;
-  padding: 0;
-}
-
-#todoList li {
-  padding: 0.5rem 0;
-  cursor: pointer;
-  transition: 0.2s ease;
-}
-
-#todoList li.done {
-  text-decoration: line-through;
-  opacity: 0.6;
-}
-
-/* ===== HABITS ===== */
-
-.habit-row {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.habit-boxes {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.box {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  border: 1px solid rgba(0,0,0,0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 18px;
-  background: rgba(255,255,255,0.5);
-  transition: 0.2s ease;
-}
-
-.box:hover {
-  transform: scale(1.1);
-}
-body{
-margin:0;
-font-family: Georgia, serif;
-overflow-x:hidden;
-}
-
-.background-layer{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:linear-gradient(135deg,#e8e2d8,#d7cfc4);
-background-size:cover;
-background-position:center;
-z-index:-1;
-transition:all 0.6s ease;
-}
-
-.room-container{
-max-width:1100px;
-margin:auto;
-padding:40px;
-text-align:center;
-}
-
-.room-title{
-font-size:42px;
-margin-bottom:30px;
-letter-spacing:2px;
-}
-
-.room-controls{
-margin-bottom:30px;
-}
-
-.upload-btn{
-padding:10px 20px;
-border-radius:30px;
-background:white;
-cursor:pointer;
-box-shadow:0 5px 15px rgba(0,0,0,0.1);
-}
-
-/* ---------- GLOBAL ---------- */
-
-body{
-margin:0;
-font-family: Georgia, serif;
-overflow-x:hidden;
-color:#2d2d2d;
-}
-
-/* ---------- BACKGROUND ---------- */
-
-.background-layer{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:linear-gradient(135deg,#e8e2d8,#d7cfc4);
-background-size:cover;
-background-position:center;
-z-index:-1;
-transition:all 0.6s ease;
-}
-
-/* ---------- MAIN ROOM ---------- */
-
-.room-container{
-max-width:1100px;
-margin:auto;
-padding:40px;
-text-align:center;
-}
-
-.room-title{
-font-size:42px;
-letter-spacing:2px;
-margin-bottom:25px;
-}
-
-/* ---------- CONTROLS ---------- */
-
-.room-controls{
-margin-bottom:30px;
-}
-
-#bgUpload{
-display:none;
-}
-
-.upload-btn{
-padding:10px 20px;
-border-radius:30px;
-background:white;
-cursor:pointer;
-box-shadow:0 5px 15px rgba(0,0,0,0.1);
-transition:all 0.25s ease;
-}
-
-.upload-btn:hover{
-transform:translateY(-2px);
-box-shadow:0 10px 25px rgba(0,0,0,0.15);
-}
-
-/* ---------- PINTEREST LAYOUT ---------- */
-
-.dashboard{
-column-count:3;
-column-gap:25px;
-max-width:1100px;
-margin:auto;
-}
-
-@media (max-width:900px){
-.dashboard{
-column-count:2;
-}
-}
-
-@media (max-width:600px){
-.dashboard{
-column-count:1;
-}
-}
-
-/* ---------- CARDS ---------- */
-
-.card{
-display:inline-block;
-width:100%;
-margin-bottom:25px;
-background:rgba(255,255,255,0.65);
-backdrop-filter:blur(18px);
-padding:25px;
-border-radius:20px;
-box-shadow:0 10px 30px rgba(0,0,0,0.1);
-transition:all 0.3s ease;
-break-inside:avoid;
-}
-
-.card:hover{
-transform:translateY(-6px);
-box-shadow:0 20px 40px rgba(0,0,0,0.15);
-}
-
-.card h2{
-margin-top:10px;
-font-weight:500;
-}
-
-/* ---------- CARD BANNERS ---------- */
-
-.card-banner{
-height:120px;
-border-radius:16px;
-display:flex;
-align-items:center;
-justify-content:center;
-margin-bottom:15px;
-overflow:hidden;
-}
-
-.card-banner img{
-width:70px;
-opacity:0.95;
-transition:transform 0.3s ease;
-}
-
-.card:hover .card-banner img{
-transform:scale(1.1);
-}
-
-/* ---------- BANNER COLORS ---------- */
-
-.timer-banner{
-background:linear-gradient(135deg,#ffd7c2,#ff9f80);
-}
-
-.vision-banner{
-background:linear-gradient(135deg,#c7d2ff,#8ea2ff);
-}
-
-.habit-banner{
-background:linear-gradient(135deg,#d9f5d2,#9ddf8f);
-}
-
-/* ---------- TIMER ---------- */
-
-.timer{
-font-size:42px;
-margin:15px 0;
-letter-spacing:2px;
-}
-
-/* ---------- BUTTONS ---------- */
-
-button{
-padding:10px 18px;
-border:none;
-border-radius:20px;
-background:#2d2d2d;
-color:white;
-cursor:pointer;
-font-size:14px;
-transition:all 0.25s ease;
-}
-
-button:hover{
-transform:translateY(-2px);
-box-shadow:0 6px 15px rgba(0,0,0,0.2);
-}
+#todoList { list-style: none; padding: 0; }
+#todoList li { padding: 0.5rem 0; cursor: pointer; transition: 0.2s ease; }
+#todoList li.done { text-decoration: line-through; opacity: 0.6; }
