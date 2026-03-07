@@ -1,52 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Private Room</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Private Room</title>
+
+<link rel="stylesheet" href="style.css">
+
 </head>
 <body>
 
-  <main class="private-room">
+<div class="background-layer" id="backgroundLayer"></div>
 
-    <!-- ENTRY SECTION -->
-    <section class="entry" id="entry">
-      <h1>The Private Room</h1>
-      <p class="prompt">What are you avoiding today?</p>
+<div class="room-container">
 
-      <input
-        type="text"
-        id="avoidanceInput"
-        placeholder="You're here, which means there's no going back."
-        autocomplete="off"
-      />
+<h1 class="room-title">The Private Room</h1>
 
-      <button id="enterRoomBtn">Enter</button>
+<div class="room-controls">
+<input type="file" id="bgUpload" accept="image/*">
+<label for="bgUpload" class="upload-btn">Change Room Aesthetic</label>
+</div>
 
-      <button onclick="window.location.href='vision.html'">
-        Enter Visual Day
-      </button>
+<div class="dashboard">
 
-      <button onclick="window.location.href='habits.html'">
-        Enter Habit Ritual
-      </button>
+<div class="card">
+<h2>Focus Timer</h2>
+<div class="timer" id="timer">25:00</div>
+<button id="enterRoomBtn">Start</button>
+</div>
 
-      <p class="footer-note">Let's unlock your prime.</p>
-    </section>
+<div class="card">
+<h2>Vision Board</h2>
+<button onclick="window.location.href='habits.html'">
+Enter Visual Day
+</button>
+</div>
 
-    <!-- FOCUS ROOM -->
-    <section class="focus-room hidden" id="focusRoom">
-      <h1>Stay</h1>
-      <div class="timer" id="timer">25:00</div>
-      <p class="whisper" id="whisperText">
-        You don’t need motivation. You need presence.
-      </p>
-      <button id="endSessionBtn">Leave Quietly</button>
-    </section>
+<div class="card">
+<h2>Habit Ritual</h2>
+<button onclick="window.location.href='habits.html'">
+Open Habit Tracker
+</button>
+</div>
 
-  </main>
+</div>
 
-  <script src="script.js"></script>
+</div>
+
+<script src="script.js"></script>
+
 </body>
 </html>
