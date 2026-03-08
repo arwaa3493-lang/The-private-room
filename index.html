@@ -1,60 +1,85 @@
-<!-- Floating Action Button -->
-<button class="fab" id="focusBtn" title="Focus Mode">
-  <i class="fa-solid fa-moon"></i>
-</button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Focus Overlay -->
-<div class="focus-mode" id="focusOverlay">
-  <h2 style="font-family: var(--font-display); font-size: 2rem; margin-bottom: 1rem;">Deep Work</h2>
-  <div class="focus-timer">25:00</div>
-  <button class="action-btn" style="width: 50px; height: 50px; font-size: 1.5rem;" onclick="document.getElementById('focusOverlay').classList.remove('active')">
-    <i class="fa-solid fa-xmark"></i>
-  </button>
+<title>The Private Room</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="background-layer" id="backgroundLayer"></div>
+
+<div class="room-container">
+
+<h1 class="room-title">The Private Room</h1>
+
+<div class="room-controls">
+<input type="file" id="bgUpload" accept="image/*">
+<label for="bgUpload" class="upload-btn">Change Room Aesthetic</label>
 </div>
 
-<!-- The Masonry Board -->
-<div id="visualBoard">
-  
-  <!-- Card 1 -->
-  <div class="card" draggable="true">
-    <div class="card-actions">
-      <button class="action-btn"><i class="fa-solid fa-pen"></i></button>
-      <button class="action-btn"><i class="fa-solid fa-trash"></i></button>
-    </div>
-    <div class="card-img-wrapper">
-      <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=500" alt="Office">
-    </div>
-    <div class="card-body">
-      <h3>Productivity</h3>
-      <p>Organize workspace for maximum efficiency.</p>
-      <div class="tags">
-        <span class="tag active">Work</span>
-        <span class="tag">Goal</span>
-      </div>
-    </div>
-    <input type="file" style="display:none">
-  </div>
+<div class="dashboard">
 
-  <!-- Card 2 -->
-  <div class="card" draggable="true">
-    <div class="card-actions">
-      <button class="action-btn"><i class="fa-solid fa-pen"></i></button>
-      <button class="action-btn"><i class="fa-solid fa-trash"></i></button>
-    </div>
-    <div class="card-img-wrapper">
-      <img src="https://images.unsplash.com/photo-1544367563-12123d8965cd?w=500" alt="Health">
-    </div>
-    <div class="card-body">
-      <h3>Wellness</h3>
-      <p>Daily meditation and yoga routine.</p>
-      <div class="tags">
-        <span class="tag">Health</span>
-        <span class="tag active">Daily</span>
-      </div>
-    </div>
-    <input type="file" style="display:none">
-  </div>
+<!-- TIMER CARD -->
 
-  <!-- Card 3 -->
-  <div class="card" draggable="true">
-    <div class
+<div class="card">
+
+<div class="card-banner timer-banner">
+<img src="https://cdn-icons-png.flaticon.com/512/2922/2922561.png">
+</div>
+
+<h2>Focus Timer</h2>
+
+<div class="timer" id="timer">25:00</div>
+
+<button id="enterRoomBtn">Start</button>
+
+</div>
+
+
+<!-- VISION BOARD CARD -->
+
+<div class="card">
+
+<div class="card-banner vision-banner">
+<img src="https://cdn-icons-png.flaticon.com/512/4140/4140047.png">
+</div>
+
+<h2>Vision Board</h2>
+
+<button onclick="window.location.href='index2.html'">
+Enter Visual Day
+</button>
+
+</div>
+
+
+<!-- HABIT TRACKER CARD -->
+
+<div class="card">
+
+<div class="card-banner habit-banner">
+<img src="https://cdn-icons-png.flaticon.com/512/2913/2913465.png">
+</div>
+
+<h2>Habit Ritual</h2>
+
+<button onclick="window.location.href='habits.html'">
+Open Habit Tracker
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
