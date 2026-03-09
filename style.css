@@ -90,24 +90,88 @@ columns:250px;
 column-gap:20px;
 
 }
+/* ===== DAILY VISION BOARD ===== */
+
+body{
+margin:0;
+font-family:Arial, sans-serif;
+
+background:linear-gradient(
+180deg,
+#1a1026,
+#2b1745
+);
+
+color:white;
+}
+
+/* Header */
+
+.vision-header{
+text-align:center;
+padding:30px;
+font-size:26px;
+}
+
+/* Pinterest style board */
+
+.vision-board{
+
+padding:30px;
+
+column-width:260px;
+column-gap:20px;
+
+}
+
+/* Vision cards */
 
 .vision-card{
 
 break-inside:avoid;
 
-margin-bottom:20px;
+background:linear-gradient(
+145deg,
+#6c4bd6,
+#4b2aa5
+);
 
-border-radius:16px;
+border-radius:18px;
+
+margin-bottom:20px;
 
 overflow:hidden;
 
-background:#3b236b;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+
+transition:transform .25s ease;
 
 }
 
+.vision-card:hover{
+transform:translateY(-6px);
+}
+
+/* Title */
+
+.vision-card h3{
+
+margin:0;
+padding:14px;
+
+font-size:18px;
+
+background:rgba(0,0,0,0.15);
+
+}
+
+/* Image */
+
 .vision-card img{
+
 width:100%;
 display:block;
+
 }
 
 /* habits */
