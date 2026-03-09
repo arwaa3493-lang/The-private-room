@@ -3,83 +3,46 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>The Private Room</title>
-
+<title>Private Room</title>
 <link rel="stylesheet" href="style.css">
-
 </head>
 
-<body class="dark-mode">
+<body>
 
-<div class="background-layer" id="backgroundLayer"></div>
+<header class="topbar">
+<h1>My Private Room</h1>
+<button id="darkToggle">🌙</button>
+</header>
 
-<div class="room-container">
+<main class="board">
 
-<h1 class="room-title">The Private Room</h1>
-
-<div class="room-controls">
-<input type="file" id="bgUpload" accept="image/*">
-<label for="bgUpload" class="upload-btn">Change Room Aesthetic</label>
-</div>
-
-<div class="dashboard">
-
-<!-- TIMER CARD -->
-
-<div class="card">
-
-<div class="card-banner timer-banner">
-<img src="https://cdn-icons-png.flaticon.com/512/2922/2922561.png">
-</div>
-
-<h2>Focus Timer</h2>
-
-<div class="timer" id="timer">25:00</div>
-
-<button id="enterRoomBtn">Start</button>
-
-</div>
-
-
-<!-- VISION BOARD CARD -->
-
-<div class="card">
-
-<div class="card-banner vision-banner">
-<img src="https://cdn-icons-png.flaticon.com/512/4140/4140047.png">
-</div>
-
+<a href="vision.html" class="card large">
 <h2>Vision Board</h2>
+<p>Dream. Plan. Visualize.</p>
+</a>
 
-<button onclick="window.location.href='vision.html'">
-Enter Visual Day
-</button>
-
-</div>
-
-
-<!-- HABIT TRACKER CARD -->
+<a href="habits.html" class="card">
+<h2>Habit Ritual</h2>
+<p>Track your rituals.</p>
+</a>
 
 <div class="card">
-
-<div class="card-banner habit-banner">
-<img src="https://cdn-icons-png.flaticon.com/512/2913/2913465.png">
+<h2>Journal</h2>
+<p>Coming soon</p>
 </div>
 
-<h2>Habit Ritual</h2>
-
-<button onclick="window.location.href='habits.html'">
-Open Habit Tracker
-</button>
-
+<div class="card">
+<h2>Focus Room</h2>
+<p>Coming soon</p>
 </div>
 
+<div class="card">
+<h2>Study Vault</h2>
+<p>Coming soon</p>
 </div>
 
-</div>
+</main>
 
 <script src="script.js"></script>
-
 </body>
 </html>
