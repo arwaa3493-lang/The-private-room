@@ -1,0 +1,107 @@
+/* ===== HABIT RITUAL ROOM ===== */
+
+.ritual-room {
+  max-width: 1100px;
+  margin: auto;
+  padding: 30px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 25px;
+}
+
+/* ===== CALENDAR ===== */
+
+.calendar-box {
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(6px);
+  border-radius: 18px;
+  padding: 20px;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+/* ===== TO DO LIST ===== */
+
+.todo-box {
+  background: rgba(255,255,255,0.75);
+  border-radius: 18px;
+  padding: 20px;
+}
+
+.todo-header {
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.todo-input {
+  display: flex;
+  gap: 10px;
+}
+
+.todo-input input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+}
+
+.todo-input button {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.todo-list {
+  margin-top: 15px;
+}
+
+.todo-item {
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+/* ===== HABIT TRACKER ===== */
+
+.habit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+  gap: 18px;
+}
+
+.habit-card {
+  background: rgba(255,255,255,0.75);
+  border-radius: 18px;
+  padding: 18px;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.habit-card:hover {
+  transform: translateY(-3px);
+}
+
+.habit-title {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.habit-check {
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+/* ===== DARK MODE SUPPORT ===== */
+
+body.dark-mode {
+  background: #1e1e1e;
+  color: white;
+}
+
+body.dark-mode .calendar-box,
+body.dark-mode .todo-box,
+body.dark-mode .habit-card {
+  background: rgba(255,255,255,0.08);
+  color: white;
+}
