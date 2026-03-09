@@ -1,144 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vision Board</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Vision Board</title>
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css">
-  <style>
-    /* Vision Board specific */
-    body {
-      background: #f3f0f7;
-      font-family: 'Inter', sans-serif;
-    }
-
-    .vision-board {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1.2rem;
-      padding: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .vision-card {
-      background: #f7f0ff;
-      border-radius: 18px;
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.08);
-    }
-
-    .vision-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 28px rgba(0,0,0,0.12);
-    }
-
-    .vision-card h3 {
-      font-family: 'Playfair Display', serif;
-      color: #5a2e91;
-      margin-bottom: 0.6rem;
-      text-align: center;
-    }
-
-    .vision-card img {
-      width: 100%;
-      height: 140px;
-      object-fit: cover;
-      border-radius: 12px;
-      margin-bottom: 0.5rem;
-      transition: transform 0.3s ease;
-    }
-
-    .vision-card img:hover {
-      transform: scale(1.03);
-    }
-
-    .vision-card .tip {
-      font-size: 0.75rem;
-      color: #6b4fa8;
-      text-align: center;
-      margin-top: 0.3rem;
-    }
-
-    /* Hide file inputs */
-    .vision-card input[type="file"] {
-      display: none;
-    }
-
-    @media(max-width: 480px) {
-      .vision-card img {
-        height: 120px;
-      }
-    }
-  </style>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <h1 style="text-align:center; margin-top:1rem; color:#5a2e91; font-family:'Playfair Display', serif;">My Daily Vision Board</h1>
+<h1 class="vision-title">Daily Vision Board</h1>
 
-  <div class="vision-board">
+<div class="vision-board">
 
-    <div class="vision-card">
-      <h3>Meal of the Day</h3>
-      <img src="images/meal.jpg" id="mealImg" alt="Meal">
-      <input type="file" accept="image/*" id="mealUpload">
-      <p class="tip">Click image to change</p>
-    </div>
+<div class="vision-card">
+<h3>Meal of the Day</h3>
+<img id="mealPreview" src="placeholder.jpg">
+<input type="file" accept="image/*" data-preview="mealPreview">
+</div>
 
-    <div class="vision-card">
-      <h3>Outfit of the Day</h3>
-      <img src="images/outfit.jpg" id="outputImg" alt="Outfit">
-      <input type="file" accept="image/*" id="outputUpload">
-      <p class="tip">Click image to change</p>
-    </div>
+<div class="vision-card">
+<h3>Output of the Day</h3>
+<img id="outputPreview" src="placeholder.jpg">
+<input type="file" accept="image/*" data-preview="outputPreview">
+</div>
 
-    <div class="vision-card">
-      <h3>Task of the Day</h3>
-      <img src="images/task.jpg" id="taskImg" alt="Task">
-      <input type="file" accept="image/*" id="taskUpload">
-      <p class="tip">Click image to change</p>
-    </div>
+<div class="vision-card">
+<h3>Task of the Day</h3>
+<img id="taskPreview" src="placeholder.jpg">
+<input type="file" accept="image/*" data-preview="taskPreview">
+</div>
 
-    <div class="vision-card">
-      <h3>Work of the Day</h3>
-      <img src="images/work.jpg" id="workImg" alt="Work">
-      <input type="file" accept="image/*" id="workUpload">
-      <p class="tip">Click image to change</p>
-    </div>
+<div class="vision-card">
+<h3>Work of the Day</h3>
+<img id="workPreview" src="placeholder.jpg">
+<input type="file" accept="image/*" data-preview="workPreview">
+</div>
 
-    <div class="vision-card">
-      <h3>Hobby of the Day</h3>
-      <img src="images/hobby.jpg" id="hobbyImg" alt="Hobby">
-      <input type="file" accept="image/*" id="hobbyUpload">
-      <p class="tip">Click image to change</p>
-    </div>
+<div class="vision-card">
+<h3>Hobby of the Day</h3>
+<img id="hobbyPreview" src="placeholder.jpg">
+<input type="file" accept="image/*" data-preview="hobbyPreview">
+</div>
 
-    <div class="vision-card">
-      <h3>Priority of the Day</h3>
-      <img src="images/priority.jpg" id="priorityImg" alt="Priority">
-      <input type="file" accept="image/*" id="priorityUpload">
-      <p class="tip">Click image to change</p>
-    </div>
+<div class="vision-card">
+<h3>Priority of the Day</h3>
+<img id="priorityPreview" src="placeholder.jpg">
+<input type="file" accept="image/*" data-preview="priorityPreview">
+</div>
 
-    <div class="vision-card">
-      <h3>Mindset of the Day</h3>
-      <img src="images/mindset.jpg" id="mindsetImg" alt="Mindset">
-      <input type="file" accept="image/*" id="mindsetUpload">
-      <p class="tip">Click image to change</p>
-    </div>
+<div class="vision-card">
+<h3>Mindset of the Day</h3>
+<img id="mindsetPreview" src="placeholder.jpg">
+<input type="file" accept="image/*" data-preview="mindsetPreview">
+</div>
 
-  </div>
+</div>
 
-  <script src="vision.js"></script>
+<script src="vision.js"></script>
+
 </body>
 </html>
