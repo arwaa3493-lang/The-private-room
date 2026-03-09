@@ -1,24 +1,58 @@
-function setupUpload(uploadId, imgId) {
-  const upload = document.getElementById(uploadId);
-  const img = document.getElementById(imgId);
+const board = document.getElementById("visionBoard");
+const upload = document.getElementById("imageUpload");
 
-  if (!upload) return;
+upload.addEventListener("change", e => {
 
-  upload.addEventListener("change", function () {
-    const file = this.files[0];
-    if (!file) return;
+const file = e.target.files[0];
+if(!file) return;
 
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      img.src = e.target.result;
-    };
-    reader.readAsDataURL(file);
-  });
+const reader = new FileReader();
+
+reader.onload = function(event){
+
+const card = document.createElement("div");
+card.className = "vision-card";
+
+const img = document.createElement("img");
+img.src = event.target.result;
+
+card.appendChild(img);
+board.appendChild(card);
+
+saveImages();
+
+};
+
+reader.readAsDataURL(file);
+
+});
+
+function saveImages(){
+
+const images = [];
+document.querySelectorAll(".vision-card img").forEach(img=>{
+images.push(img.src);
+});
+
+localStorage.setItem("visionImages", JSON.stringify(images));
+
 }
 
-setupUpload("outfitUpload", "outfitImg");
-setupUpload("hobbyUpload", "hobbyImg");
-setupUpload("taskUpload", "taskImg");
-setupUpload("workoutUpload", "workoutImg");
-setupUpload("mealUpload", "mealImg");
-setupUpload("priorityUpload", "priorityImg");
+function loadImages(){
+
+const saved = JSON.parse(localStorage.getItem("visionImages")) || [];
+
+saved.forEach(src=>{
+const card = document.createElement("div");
+card.className="vision-card";
+
+const img=document.createElement("img");
+img.src=src;
+
+card.appendChild(img);
+board.appendChild(card);
+});
+
+}
+
+loadImages();
