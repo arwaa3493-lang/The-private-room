@@ -2,7 +2,6 @@
 // VISION BOARD JS – Editable Images
 // ============================
 
-// Map each card’s file input to its image element
 const cardMappings = [
   { inputId: "mealUpload", imgId: "mealImg" },
   { inputId: "outputUpload", imgId: "outputImg" },
@@ -13,7 +12,7 @@ const cardMappings = [
   { inputId: "mindsetUpload", imgId: "mindsetImg" },
 ];
 
-// Function to attach file upload event to an image
+// Function to attach file upload
 function handleImageUpload(inputEl, imgEl) {
   inputEl.addEventListener("change", () => {
     const file = inputEl.files[0];
@@ -25,13 +24,14 @@ function handleImageUpload(inputEl, imgEl) {
     };
     reader.readAsDataURL(file);
   });
+
+  // Make image clickable
+  imgEl.addEventListener("click", () => inputEl.click());
 }
 
-// Attach upload handlers
+// Attach handlers
 cardMappings.forEach(({ inputId, imgId }) => {
   const inputEl = document.getElementById(inputId);
   const imgEl = document.getElementById(imgId);
-  if (inputEl && imgEl) {
-    handleImageUpload(inputEl, imgEl);
-  }
+  if (inputEl && imgEl) handleImageUpload(inputEl, imgEl);
 });
