@@ -108,17 +108,30 @@ column-gap:20px;
 
 }
 
+/* ===== DAILY VISION BOARD ===== */
+
 body{
 margin:0;
-font-family:sans-serif;
-background:#1a1026;
+font-family:Arial, sans-serif;
+
+background:linear-gradient(
+180deg,
+#1a1026,
+#2b1745
+);
+
 color:white;
 }
 
-.vision-title{
+/* Header */
+
+.vision-header{
 text-align:center;
 padding:30px;
+font-size:26px;
 }
+
+/* Pinterest style board */
 
 .vision-board{
 
@@ -128,6 +141,8 @@ column-width:260px;
 column-gap:20px;
 
 }
+
+/* Vision cards */
 
 .vision-card{
 
@@ -141,27 +156,8 @@ background:linear-gradient(
 
 border-radius:18px;
 
-padding:15px;
-
 margin-bottom:20px;
 
-box-shadow:0 10px 25px rgba(0,0,0,0.3);
-
-}
-
-.vision-card h3{
-margin-top:0;
-}
-
-.vision-card img{
-width:100%;
-border-radius:12px;
-margin-bottom:10px;
-}
-
-.vision-card input{
-width:100%;
-}
 overflow:hidden;
 
 box-shadow:0 10px 25px rgba(0,0,0,0.3);
