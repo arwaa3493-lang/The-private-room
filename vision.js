@@ -1,58 +1,37 @@
-const board = document.getElementById("visionBoard");
-const upload = document.getElementById("imageUpload");
+// ============================
+// VISION BOARD JS – Editable Images
+// ============================
 
-upload.addEventListener("change", e => {
+// Map each card’s file input to its image element
+const cardMappings = [
+  { inputId: "mealUpload", imgId: "mealImg" },
+  { inputId: "outputUpload", imgId: "outputImg" },
+  { inputId: "taskUpload", imgId: "taskImg" },
+  { inputId: "workUpload", imgId: "workImg" },
+  { inputId: "hobbyUpload", imgId: "hobbyImg" },
+  { inputId: "priorityUpload", imgId: "priorityImg" },
+  { inputId: "mindsetUpload", imgId: "mindsetImg" },
+];
 
-const file = e.target.files[0];
-if(!file) return;
+// Function to attach file upload event to an image
+function handleImageUpload(inputEl, imgEl) {
+  inputEl.addEventListener("change", () => {
+    const file = inputEl.files[0];
+    if (!file) return;
 
-const reader = new FileReader();
-
-reader.onload = function(event){
-
-const card = document.createElement("div");
-card.className = "vision-card";
-
-const img = document.createElement("img");
-img.src = event.target.result;
-
-card.appendChild(img);
-board.appendChild(card);
-
-saveImages();
-
-};
-
-reader.readAsDataURL(file);
-
-});
-
-function saveImages(){
-
-const images = [];
-document.querySelectorAll(".vision-card img").forEach(img=>{
-images.push(img.src);
-});
-
-localStorage.setItem("visionImages", JSON.stringify(images));
-
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      imgEl.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
 }
 
-function loadImages(){
-
-const saved = JSON.parse(localStorage.getItem("visionImages")) || [];
-
-saved.forEach(src=>{
-const card = document.createElement("div");
-card.className="vision-card";
-
-const img=document.createElement("img");
-img.src=src;
-
-card.appendChild(img);
-board.appendChild(card);
+// Attach upload handlers
+cardMappings.forEach(({ inputId, imgId }) => {
+  const inputEl = document.getElementById(inputId);
+  const imgEl = document.getElementById(imgId);
+  if (inputEl && imgEl) {
+    handleImageUpload(inputEl, imgEl);
+  }
 });
-
-}
-
-loadImages();
