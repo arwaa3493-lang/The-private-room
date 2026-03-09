@@ -1,45 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Private Room</title>
-<link rel="stylesheet" href="style.css">
-</head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Private Room</title>
 
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
 <body>
 
-<header class="topbar">
-<h1>My Private Room</h1>
-<button id="darkToggle">🌙</button>
-</header>
+<main class="container">
 
-<main class="board">
+  <!-- ENTRY -->
+  <section id="entry">
+    <h1>The Private Room</h1>
+    <p class="prompt">What are you avoiding today?</p>
 
-<a href="vision.html" class="card large">
-<h2>Vision Board</h2>
-<p>Dream. Plan. Visualize.</p>
-</a>
+    <input type="text" id="avoidanceInput" placeholder="Say it quietly.">
+    <button id="enterRoomBtn">Enter</button>
 
-<a href="habits.html" class="card">
-<h2>Habit Ritual</h2>
-<p>Track your rituals.</p>
-</a>
+    <button id="visualBtn" class="secondary-btn">
+      Enter Visual Day
+    </button>
+  </section>
 
-<div class="card">
-<h2>Journal</h2>
-<p>Coming soon</p>
-</div>
+  <!-- FOCUS ROOM -->
+  <section id="focusRoom" class="hidden">
+    <h1>Stay</h1>
+    <div id="timer">25:00</div>
+    <p id="whisperText">You don’t need motivation. You need presence.</p>
+    <button id="endSessionBtn">Leave Quietly</button>
+  </section>
 
-<div class="card">
-<h2>Focus Room</h2>
-<p>Coming soon</p>
-</div>
+  <!-- VISUAL BOARD -->
+  <section id="visualBoard" class="hidden">
 
-<div class="card">
-<h2>Study Vault</h2>
-<p>Coming soon</p>
-</div>
+    <div class="card">
+      <h3>Outfit of the Day</h3>
+      <img id="outfitImg">
+      <input type="file" id="outfitUpload" accept="image/*">
+    </div>
+
+    <div class="card">
+      <h3>Hobby of the Day</h3>
+      <img id="hobbyImg">
+      <input type="file" id="hobbyUpload" accept="image/*">
+    </div>
+
+    <div class="card">
+      <h3>Task of the Day</h3>
+      <img id="taskImg">
+      <input type="file" id="taskUpload" accept="image/*">
+    </div>
+
+    <div class="card">
+      <h3>Workout of the Day</h3>
+      <img id="workoutImg">
+      <input type="file" id="workoutUpload" accept="image/*">
+    </div>
+
+    <div class="card">
+      <h3>Meal of the Day</h3>
+      <img id="mealImg">
+      <input type="file" id="mealUpload" accept="image/*">
+    </div>
+
+    <div class="card">
+      <h3>Priority of the Day</h3>
+      <img id="priorityImg">
+      <input type="file" id="priorityUpload" accept="image/*">
+    </div>
+
+  </section>
 
 </main>
 
