@@ -1,106 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Visual Daily Board</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vision Board</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <main class="vision-wrapper">
+<header class="topbar">
+<h1>Vision Board</h1>
+<a href="index.html">← Back</a>
+</header>
 
-    <h1>Visual Daily Board</h1>
+<section class="vision-controls">
+<input type="file" id="imageUpload">
+</section>
 
-    <button onclick="window.location.href='index.html'" class="secondary-btn">
-      Back to Private Room
-    </button>
-<div class="daily-board">
+<main id="visionBoard" class="vision-grid"></main>
 
-  <div class="board-grid">
-
-    <div class="board-card">
-      <img src="habit.png" class="board-illustration">
-      <div class="board-title">Habit Ritual Room</div>
-      <button class="board-button">Enter</button>
-    </div>
-
-    <div class="board-card">
-      <img src="vision.png" class="board-illustration">
-      <div class="board-title">Vision Board</div>
-      <button class="board-button">Open</button>
-    </div>
-
-    <div class="board-card">
-      <img src="journal.png" class="board-illustration">
-      <div class="board-title">Journal</div>
-      <button class="board-button">Write</button>
-    </div>
-
-  </div>
-
-</div>
-    <section id="visualBoard">
-
-      <!-- Outfit -->
-      <div class="card">
-        <h3>Outfit of the Day</h3>
-        <img id="outfitImg" alt="">
-        <input type="file" id="outfitUpload" accept="image/*">
-        <label for="outfitUpload">Add Picture</label>
-        <textarea placeholder="Optional note..."></textarea>
-      </div>
-
-      <!-- Hobby -->
-      <div class="card">
-        <h3>Hobby of the Day</h3>
-        <img id="hobbyImg" alt="">
-        <input type="file" id="hobbyUpload" accept="image/*">
-        <label for="hobbyUpload">Add Picture</label>
-        <textarea placeholder="Optional note..."></textarea>
-      </div>
-
-      <!-- Task -->
-      <div class="card">
-        <h3>Task of the Day</h3>
-        <img id="taskImg" alt="">
-        <input type="file" id="taskUpload" accept="image/*">
-        <label for="taskUpload">Add Picture</label>
-        <textarea placeholder="Optional note..."></textarea>
-      </div>
-
-      <!-- Workout -->
-      <div class="card">
-        <h3>Workout of the Day</h3>
-        <img id="workoutImg" alt="">
-        <input type="file" id="workoutUpload" accept="image/*">
-        <label for="workoutUpload">Add Picture</label>
-        <textarea placeholder="Optional note..."></textarea>
-      </div>
-
-      <!-- Meal -->
-      <div class="card">
-        <h3>Meal of the Day</h3>
-        <img id="mealImg" alt="">
-        <input type="file" id="mealUpload" accept="image/*">
-        <label for="mealUpload">Add Picture</label>
-        <textarea placeholder="Optional note..."></textarea>
-      </div>
-
-      <!-- Priority -->
-      <div class="card">
-        <h3>Priority of the Day</h3>
-        <img id="priorityImg" alt="">
-        <input type="file" id="priorityUpload" accept="image/*">
-        <label for="priorityUpload">Add Picture</label>
-        <textarea placeholder="Optional note..."></textarea>
-      </div>
-
-    </section>
-
-
-  </main>
-
-  <script src="vision.js"></script>
+<script src="vision.js"></script>
 </body>
 </html>
