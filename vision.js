@@ -1,95 +1,61 @@
-// vision.js
+// ====== VISION JS ======
 
-document.addEventListener("DOMContentLoaded", () => {
-  const visionBoard = document.querySelector(".vision-board");
-  const addCardBtn = document.getElementById("addCardBtn");
+// Select elements
+const addCardBtn = document.getElementById("addCardBtn");
+const visionBoard = document.querySelector(".vision-board");
 
-  // Function to create a new vision card
-  function createVisionCard(title = "New Card") {
-    const card = document.createElement("div");
-    card.classList.add("vision-card");
+// Function to handle image upload inside a card
+function handleImageUpload(event) {
+  const file = event.target.files[0];
+  if (!file) return;
 
-    // Editable title
-    const cardTitle = document.createElement("h3");
-    cardTitle.contentEditable = true;
-    cardTitle.innerText = title;
-    cardTitle.classList.add("vision-card-title");
-    card.appendChild(cardTitle);
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    // Check if an <img> already exists, if not create it
+    let img = event.target.closest(".vision-card").querySelector("img");
+    if (!img) {
+      img = document.createElement("img");
+      event.target.closest(".vision-card").appendChild(img);
+    }
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
 
-    // Image placeholder
-    const img = document.createElement("img");
-    img.src = ""; // empty initially
-    img.alt = "Click to upload image";
-    card.appendChild(img);
+// Function to create a new vision card
+function createVisionCard(title = "New Card") {
+  const card = document.createElement("div");
+  card.classList.add("vision-card");
 
-    // Hidden file input
-    const input = document.createElement("input");
-    input.type = "file";
-    input.accept = "image/*";
-    input.style.display = "none"; // hide it
-    card.appendChild(input);
+  // Editable title
+  const h3 = document.createElement("h3");
+  h3.contentEditable = "true";
+  h3.textContent = title;
+  card.appendChild(h3);
 
-    // Placeholder text overlay
-    const placeholder = document.createElement("p");
-    placeholder.innerText = "Upload Image";
-    placeholder.classList.add("placeholder-text");
-    placeholder.style.position = "absolute";
-    placeholder.style.top = "50%";
-    placeholder.style.left = "50%";
-    placeholder.style.transform = "translate(-50%, -50%)";
-    placeholder.style.color = "#4b3828";
-    placeholder.style.pointerEvents = "none";
-    placeholder.style.fontStyle = "italic";
-    placeholder.style.fontSize = "14px";
-    card.style.position = "relative";
-    card.appendChild(placeholder);
+  // Upload box (clickable label)
+  const label = document.createElement("label");
+  label.classList.add("upload-box");
 
-    // Click card to trigger file input
-    card.addEventListener("click", () => {
-      input.click();
-    });
+  const input = document.createElement("input");
+  input.type = "file";
+  input.accept = "image/*";
+  input.addEventListener("change", handleImageUpload);
 
-    // When image selected
-    input.addEventListener("change", (e) => {
-      const file = e.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        img.src = event.target.result;
-        placeholder.style.display = "none"; // hide placeholder
-      };
-      reader.readAsDataURL(file);
-    });
+  const span = document.createElement("span");
+  span.textContent = "Upload an image";
 
-    visionBoard.appendChild(card);
-  }
+  label.appendChild(input);
+  label.appendChild(span);
+  card.appendChild(label);
 
-  // Add initial cards if they exist in HTML
-  document.querySelectorAll(".vision-card").forEach((card) => {
-    const img = card.querySelector("img");
-    const input = card.querySelector("input[type=file]");
-    const placeholder = card.querySelector(".placeholder-text");
+  visionBoard.appendChild(card);
+}
 
-    card.style.position = "relative";
-
-    card.addEventListener("click", () => {
-      input.click();
-    });
-
-    input.addEventListener("change", (e) => {
-      const file = e.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        img.src = event.target.result;
-        if (placeholder) placeholder.style.display = "none";
-      };
-      reader.readAsDataURL(file);
-    });
-  });
-
-  // Add new card button
-  addCardBtn.addEventListener("click", () => {
-    createVisionCard("New Card");
-  });
+// Attach event listeners to existing cards
+document.querySelectorAll(".vision-card input[type='file']").forEach(input => {
+  input.addEventListener("change", handleImageUpload);
 });
+
+// Add new card on button click
+addCardBtn.addEventListener("click", () => createVisionCard());
