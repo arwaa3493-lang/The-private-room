@@ -167,6 +167,10 @@ cursor:pointer;
 
 font-size:14px;
 
+font-style : italic;
+
+font-family: "Times New Roman";
+
 color:#3b2b22;
 
 transition:all .25s ease;
