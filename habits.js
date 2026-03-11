@@ -1,51 +1,105 @@
-const habits = [
-"Study",
-"Workout",
-"Read",
-"Journal",
-"Drink Water",
-"Sleep Early"
-];
+const habitGrid = document.getElementById("habitGrid");
+const habitInput = document.getElementById("habitInput");
+const addHabitBtn = document.getElementById("addHabitBtn");
 
-const grid = document.getElementById("habitGrid");
+/* Load habits from browser storage */
 
-habits.forEach(habit=>{
+let habits = JSON.parse(localStorage.getItem("habits")) || [];
 
-const card=document.createElement("div");
-card.className="habit-card";
+/* Save habits */
 
-const title=document.createElement("h4");
-title.textContent=habit;
+function saveHabits(){
 
-const check=document.createElement("span");
-check.textContent="⬜";
+localStorage.setItem("habits", JSON.stringify(habits));
 
-check.onclick=()=>{
-check.textContent = check.textContent==="⬜" ? "✅" : "⬜";
-};
+}
 
-card.appendChild(title);
-card.appendChild(check);
+/* Render habits */
 
-grid.appendChild(card);
+function renderHabits(){
+
+habitGrid.innerHTML = "";
+
+habits.forEach((habit,index)=>{
+
+const card = document.createElement("div");
+card.className = "habit-card";
+
+/* editable habit name */
+
+const title = document.createElement("div");
+title.textContent = habit;
+title.contentEditable = true;
+
+/* save edited text */
+
+title.addEventListener("blur",()=>{
+
+habits[index] = title.textContent;
+
+saveHabits();
 
 });
 
-const date = new Date();
-document.getElementById("calendar").textContent = date.toDateString();
-document.getElementById("weekday").textContent = date.toLocaleDateString("en",{weekday:"long"}) + " Tasks";
+/* checkbox */
 
-const taskInput = document.getElementById("taskInput");
-const taskList = document.getElementById("taskList");
+const check = document.createElement("div");
+check.textContent = "⬜";
+check.style.fontSize = "22px";
+check.style.cursor = "pointer";
 
-document.getElementById("addTask").onclick = () => {
+check.onclick = ()=>{
 
-if(taskInput.value==="") return;
+check.textContent =
+check.textContent === "⬜" ? "✅" : "⬜";
 
-const li=document.createElement("li");
-li.textContent=taskInput.value;
-
-taskList.appendChild(li);
-
-taskInput.value="";
 };
+
+/* delete button */
+
+const deleteBtn = document.createElement("button");
+deleteBtn.textContent = "Delete";
+
+deleteBtn.onclick = ()=>{
+
+habits.splice(index,1);
+
+saveHabits();
+
+renderHabits();
+
+};
+
+/* assemble card */
+
+card.appendChild(title);
+card.appendChild(check);
+card.appendChild(deleteBtn);
+
+habitGrid.appendChild(card);
+
+});
+
+}
+
+/* Add habit */
+
+addHabitBtn.onclick = ()=>{
+
+const newHabit = habitInput.value.trim();
+
+if(newHabit === "") return;
+
+habits.push(newHabit);
+
+habitInput.value = "";
+
+saveHabits();
+
+renderHabits();
+
+};
+
+/* Initial render */
+
+renderHabits();
