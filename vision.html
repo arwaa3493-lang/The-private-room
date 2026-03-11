@@ -1,64 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Daily Vision Board</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily Vision Board</title>
 
-<link rel="stylesheet" href="style.css">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<h1 class="vision-title">Daily Vision Board</h1>
+  <main class="vision-board">
 
-<div class="vision-board">
+    <h1>Daily Vision Board</h1>
 
-<div class="vision-card">
-<h3>Meal of the Day</h3>
-<img id="mealPreview" src="placeholder.jpg">
-<input type="file" accept="image/*" data-preview="mealPreview">
-</div>
+    <section class="cards-container">
 
-<div class="vision-card">
-<h3>Output of the Day</h3>
-<img id="outputPreview" src="placeholder.jpg">
-<input type="file" accept="image/*" data-preview="outputPreview">
-</div>
+      <div class="card">
+        <h3>Outfit of the Day</h3>
+        <img id="outfitImg" src="" alt="Outfit Preview" />
+        <input type="file" accept="image/*" id="outfitUpload" />
+        <p class="tip">Upload an image that represents your outfit today</p>
+      </div>
 
-<div class="vision-card">
-<h3>Task of the Day</h3>
-<img id="taskPreview" src="placeholder.jpg">
-<input type="file" accept="image/*" data-preview="taskPreview">
-</div>
+      <div class="card">
+        <h3>Hobby of the Day</h3>
+        <img id="hobbyImg" src="" alt="Hobby Preview" />
+        <input type="file" accept="image/*" id="hobbyUpload" />
+        <p class="tip">Visualize your hobby or creative moment</p>
+      </div>
 
-<div class="vision-card">
-<h3>Work of the Day</h3>
-<img id="workPreview" src="placeholder.jpg">
-<input type="file" accept="image/*" data-preview="workPreview">
-</div>
+      <div class="card">
+        <h3>Task of the Day</h3>
+        <img id="taskImg" src="" alt="Task Preview" />
+        <input type="file" accept="image/*" id="taskUpload" />
+        <p class="tip">Highlight your main task for today</p>
+      </div>
 
-<div class="vision-card">
-<h3>Hobby of the Day</h3>
-<img id="hobbyPreview" src="placeholder.jpg">
-<input type="file" accept="image/*" data-preview="hobbyPreview">
-</div>
+      <div class="card">
+        <h3>Workout of the Day</h3>
+        <img id="workoutImg" src="" alt="Workout Preview" />
+        <input type="file" accept="image/*" id="workoutUpload" />
+        <p class="tip">Your visual motivation for movement</p>
+      </div>
 
-<div class="vision-card">
-<h3>Priority of the Day</h3>
-<img id="priorityPreview" src="placeholder.jpg">
-<input type="file" accept="image/*" data-preview="priorityPreview">
-</div>
+      <div class="card">
+        <h3>Meal of the Day</h3>
+        <img id="mealImg" src="" alt="Meal Preview" />
+        <input type="file" accept="image/*" id="mealUpload" />
+        <p class="tip">Plan or imagine your meals</p>
+      </div>
 
-<div class="vision-card">
-<h3>Mindset of the Day</h3>
-<img id="mindsetPreview" src="placeholder.jpg">
-<input type="file" accept="image/*" data-preview="mindsetPreview">
-</div>
+      <div class="card">
+        <h3>Priority of the Day</h3>
+        <img id="priorityImg" src="" alt="Priority Preview" />
+        <input type="file" accept="image/*" id="priorityUpload" />
+        <p class="tip">What matters most today? Make it visual.</p>
+      </div>
 
-</div>
+      <div class="card">
+        <h3>Mindset of the Day</h3>
+        <img id="mindsetImg" src="" alt="Mindset Preview" />
+        <input type="file" accept="image/*" id="mindsetUpload" />
+        <p class="tip">Visualize the mindset you want to have today</p>
+      </div>
 
-<script src="vision.js"></script>
+    </section>
 
+  </main>
+
+  <!-- JS -->
+  <script src="vision.js"></script>
 </body>
 </html>
