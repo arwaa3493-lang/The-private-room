@@ -4,75 +4,97 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Daily Vision Board</title>
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
-
-  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <main class="vision-board">
-
+  <header>
     <h1>Daily Vision Board</h1>
+    <button id="backBtn">← Back to Private Room</button>
+  </header>
 
-    <section class="cards-container">
+  <main class="cards-container" id="visionBoard">
 
-      <div class="card">
-        <h3>Outfit of the Day</h3>
-        <img id="outfitImg" src="" alt="Outfit Preview" />
-        <input type="file" accept="image/*" id="outfitUpload" />
-        <p class="tip">Upload an image that represents your outfit today</p>
-      </div>
+    <div class="card" data-title="Outfit of the Day">
+      <h3>Outfit of the Day</h3>
+      <div class="placeholder">Upload an image</div>
+      <input type="file" accept="image/*" class="hidden-input">
+      <img src="" alt="" class="card-img" style="display:none;">
+    </div>
 
-      <div class="card">
-        <h3>Hobby of the Day</h3>
-        <img id="hobbyImg" src="" alt="Hobby Preview" />
-        <input type="file" accept="image/*" id="hobbyUpload" />
-        <p class="tip">Visualize your hobby or creative moment</p>
-      </div>
+    <div class="card" data-title="Hobby of the Day">
+      <h3>Hobby of the Day</h3>
+      <div class="placeholder">Upload an image</div>
+      <input type="file" accept="image/*" class="hidden-input">
+      <img src="" alt="" class="card-img" style="display:none;">
+    </div>
 
-      <div class="card">
-        <h3>Task of the Day</h3>
-        <img id="taskImg" src="" alt="Task Preview" />
-        <input type="file" accept="image/*" id="taskUpload" />
-        <p class="tip">Highlight your main task for today</p>
-      </div>
+    <div class="card" data-title="Task of the Day">
+      <h3>Task of the Day</h3>
+      <div class="placeholder">Upload an image</div>
+      <input type="file" accept="image/*" class="hidden-input">
+      <img src="" alt="" class="card-img" style="display:none;">
+    </div>
 
-      <div class="card">
-        <h3>Workout of the Day</h3>
-        <img id="workoutImg" src="" alt="Workout Preview" />
-        <input type="file" accept="image/*" id="workoutUpload" />
-        <p class="tip">Your visual motivation for movement</p>
-      </div>
+    <div class="card" data-title="Workout of the Day">
+      <h3>Workout of the Day</h3>
+      <div class="placeholder">Upload an image</div>
+      <input type="file" accept="image/*" class="hidden-input">
+      <img src="" alt="" class="card-img" style="display:none;">
+    </div>
 
-      <div class="card">
-        <h3>Meal of the Day</h3>
-        <img id="mealImg" src="" alt="Meal Preview" />
-        <input type="file" accept="image/*" id="mealUpload" />
-        <p class="tip">Plan or imagine your meals</p>
-      </div>
+    <div class="card" data-title="Meal of the Day">
+      <h3>Meal of the Day</h3>
+      <div class="placeholder">Upload an image</div>
+      <input type="file" accept="image/*" class="hidden-input">
+      <img src="" alt="" class="card-img" style="display:none;">
+    </div>
 
-      <div class="card">
-        <h3>Priority of the Day</h3>
-        <img id="priorityImg" src="" alt="Priority Preview" />
-        <input type="file" accept="image/*" id="priorityUpload" />
-        <p class="tip">What matters most today? Make it visual.</p>
-      </div>
+    <div class="card" data-title="Priority of the Day">
+      <h3>Priority of the Day</h3>
+      <div class="placeholder">Upload an image</div>
+      <input type="file" accept="image/*" class="hidden-input">
+      <img src="" alt="" class="card-img" style="display:none;">
+    </div>
 
-      <div class="card">
-        <h3>Mindset of the Day</h3>
-        <img id="mindsetImg" src="" alt="Mindset Preview" />
-        <input type="file" accept="image/*" id="mindsetUpload" />
-        <p class="tip">Visualize the mindset you want to have today</p>
-      </div>
-
-    </section>
+    <div class="card" data-title="Mindset of the Day">
+      <h3>Mindset of the Day</h3>
+      <div class="placeholder">Upload an image</div>
+      <input type="file" accept="image/*" class="hidden-input">
+      <img src="" alt="" class="card-img" style="display:none;">
+    </div>
 
   </main>
 
-  <!-- JS -->
-  <script src="vision.js"></script>
+  <script>
+    const backBtn = document.getElementById('backBtn');
+    backBtn.addEventListener('click', () => {
+      window.location.href = 'index.html';
+    });
+
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      const input = card.querySelector('.hidden-input');
+      const img = card.querySelector('.card-img');
+      const placeholder = card.querySelector('.placeholder');
+
+      card.addEventListener('click', () => {
+        input.click();
+      });
+
+      input.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = () => {
+          img.src = reader.result;
+          img.style.display = 'block';
+          placeholder.style.display = 'none';
+        };
+        reader.readAsDataURL(file);
+      });
+    });
+  </script>
+
 </body>
 </html>
