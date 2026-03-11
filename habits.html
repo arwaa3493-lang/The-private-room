@@ -3,38 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Habit Ritual</title>
+
+<title>Habit Ritual Room</title>
+
 <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
 <header class="topbar">
 <h1>Habit Ritual Room</h1>
-<a href="index.html">← Back</a>
+<a href="index.html"><button>Back</button></a>
 </header>
 
 <section class="habit-section">
 
-<div class="calendar" id="calendar"></div>
-
 <div class="todo">
 
-<h3 id="weekday"></h3>
+<h3>Add a Habit</h3>
 
 <div class="todo-input">
-<input id="taskInput" placeholder="Add task">
-<button id="addTask">Add</button>
+
+<input id="habitInput" placeholder="Type a new habit">
+
+<button id="addHabitBtn">Add</button>
+
 </div>
 
-<ul id="taskList"></ul>
-
 </div>
 
-<div class="habit-grid" id="habitGrid"></div>
+<div id="habitGrid" class="habit-grid"></div>
 
 </section>
 
 <script src="habits.js"></script>
+
 </body>
 </html>
