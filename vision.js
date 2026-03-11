@@ -2,7 +2,7 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   const visionBoard = document.querySelector(".vision-board");
-  const addCardBtn = document.getElementById("addVisionCard");
+  const addCardBtn = document.getElementById("addCardbtn");
 
   // Function to create a new vision card
   function createVisionCard(title = "New Card") {
