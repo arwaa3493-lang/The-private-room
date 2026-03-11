@@ -216,3 +216,20 @@ transform:translateY(-2px);
 box-shadow:0 6px 12px rgba(60,40,20,0.2);
 
 }
+/* ===== FOCUS ROOM BUTTONS ===== */
+.focus-btn {
+    font-family: "Times New Roman", serif;
+    font-style: italic;
+    background: #c9b39a; /* light coffee shade */
+    border: none;
+    padding: 10px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+}
+
+.focus-btn:hover {
+    background: #b69b80; /* slightly darker coffee shade */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.18);
+}
