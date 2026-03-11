@@ -1,266 +1,303 @@
-/* =========================
-   GLOBAL STYLE – PRIVATE ROOM PROJECT
-   ========================= */
+/* ===== GLOBAL STYLE ===== */
 
-/* ---- RESET ---- */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+body{
+margin:0;
+padding:0;
+
+font-family:"Times New Roman", serif;
+font-style:italic;
+
+background:linear-gradient(
+180deg,
+#f5efe6,
+#e7d8c9
+);
+
+color:#4a3b2c;
 }
 
-/* ---- ROOT VARIABLES ---- */
-:root {
-  --bg-main: #f5f0e7;       /* very light coffee / beige background */
-  --card-bg: #fff4eb;       /* empty card background */
-  --card-border: #d4b8a8;   /* slightly darker border */
-  --text-main: #4b3a36;
-  --text-muted: #7a665e;
-  --accent: #b08d7b;
-  --font-main: "Times New Roman", serif;
-  --transition-fast: 0.25s ease;
-  --transition-slow: 0.6s ease;
+/* ===== TOP BAR ===== */
+
+.topbar{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding:20px 40px;
+
+background:#e6d6c3;
+
+box-shadow:0 4px 10px rgba(0,0,0,0.08);
+
 }
 
-/* ---- BODY ---- */
-body {
-  min-height: 100vh;
-  background-color: var(--bg-main);
-  font-family: var(--font-main);
-  font-style: italic;
-  color: var(--text-main);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem;
+.topbar h1{
+margin:0;
+font-size:28px;
 }
 
-/* ---- HEADINGS ---- */
-h1, h2, h3 {
-  font-family: var(--font-main);
-  font-style: italic;
-  text-align: center;
-  color: var(--text-main);
+/* ===== MAIN DASHBOARD GRID ===== */
+
+.board{
+
+padding:40px;
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fill,minmax(260px,1fr));
+
+grid-auto-rows:200px;
+
+gap:25px;
+
+max-width:1200px;
+margin:auto;
+
 }
 
-/* ------------------------
-   PRIVATE ROOM
-   ------------------------ */
-.private-room {
-  background: var(--card-bg);
-  border-radius: 24px;
-  border: 2px solid var(--card-border);
-  padding: 3rem 2rem;
-  width: min(92%, 520px);
-  text-align: center;
-  margin-bottom: 2rem;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+/* ===== CARDS ===== */
+
+.card{
+
+background:linear-gradient(
+145deg,
+#e6d6c3,
+#d6c2a8
+);
+
+border-radius:18px;
+
+padding:20px;
+
+display:flex;
+flex-direction:column;
+justify-content:center;
+
+text-decoration:none;
+
+color:#4a3b2c;
+
+box-shadow:0 8px 18px rgba(0,0,0,0.12);
+
+transition:transform .25s ease, box-shadow .25s ease;
+
 }
 
-.private-room:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 14px 28px rgba(0,0,0,0.12);
+.card:hover{
+
+transform:translateY(-6px);
+
+box-shadow:0 14px 28px rgba(0,0,0,0.18);
+
 }
 
-/* INPUTS & TEXTAREA */
-input[type="text"], textarea {
-  width: 100%;
-  padding: 0.8rem 0.5rem;
-  border: 1px solid var(--card-border);
-  border-radius: 12px;
-  background: var(--bg-main);
-  font-family: var(--font-main);
-  font-style: italic;
-  color: var(--text-main);
-  outline: none;
-  margin-bottom: 1rem;
-  transition: border-color var(--transition-fast);
+.large{
+grid-row:span 2;
 }
 
-input:focus, textarea:focus {
-  border-color: var(--accent);
+/* ===== VISION BOARD ===== */
+
+.vision-board{
+
+padding:40px;
+
+column-width:260px;
+
+column-gap:20px;
+
+max-width:1200px;
+margin:auto;
+
 }
 
-/* BUTTONS */
-button {
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  border-radius: 999px;
-  padding: 0.8rem 2rem;
-  font-family: var(--font-main);
-  font-style: italic;
-  cursor: pointer;
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast), opacity var(--transition-fast);
+.vision-card{
+
+break-inside:avoid;
+
+background:linear-gradient(
+145deg,
+#e6d6c3,
+#d6c2a8
+);
+
+border-radius:18px;
+
+padding:16px;
+
+margin-bottom:20px;
+
+box-shadow:0 8px 18px rgba(0,0,0,0.12);
+
 }
 
-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(176, 137, 104, 0.35);
-  opacity: 0.95;
+.vision-card h3{
+
+margin-top:0;
+margin-bottom:10px;
+
+color:#4b3828;
+
 }
 
-/* ---- TIMER / FOCUS ROOM ---- */
-.focus-room {
-  text-align: center;
-  margin-bottom: 2rem;
+.vision-card img{
+
+width:100%;
+
+border-radius:12px;
+
+margin-bottom:10px;
+
 }
 
-.timer {
-  font-family: var(--font-main);
-  font-style: italic;
-  font-size: 3rem;
-  margin: 2rem 0;
+.vision-card input{
+
+width:100%;
+
+background:#f5efe6;
+
+border:none;
+
+padding:6px;
+
+border-radius:8px;
+
+cursor:pointer;
+
 }
 
-.whisper {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  font-style: italic;
-  max-width: 80%;
-  margin: 0 auto;
+/* ===== HABIT ROOM ===== */
+
+.habit-section{
+
+padding:40px;
+
+max-width:1000px;
+
+margin:auto;
+
 }
 
-.locked {
-  opacity: 0.45;
-  pointer-events: none;
+/* calendar */
+
+.calendar{
+
+font-size:20px;
+
+margin-bottom:20px;
+
 }
 
-/* ---- FOOTER NOTE ---- */
-.footer-note {
-  margin-top: 2rem;
-  font-size: 0.75rem;
-  color: var(--text-muted);
+/* todo */
+
+.todo{
+
+background:#e6d6c3;
+
+padding:20px;
+
+border-radius:16px;
+
+margin-bottom:30px;
+
 }
 
-/* ------------------------
-   VISION DAILY BOARD
-   ------------------------ */
-.cards-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1.5rem;
-  width: 100%;
-  max-width: 1200px;
-  margin-bottom: 2rem;
+.todo-input{
+
+display:flex;
+
+gap:10px;
+
+margin-bottom:10px;
+
 }
 
-.card {
-  background-color: var(--card-bg);
-  border: 2px solid var(--card-border);
-  border-radius: 18px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 1rem;
-  min-height: 280px;
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-  overflow: hidden;
-  position: relative;
+.todo-input input{
+
+flex:1;
+
+padding:10px;
+
+border-radius:8px;
+
+border:none;
+
+background:#f5efe6;
+
 }
 
-.card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+.todo-input button{
+
+background:#c9b39a;
+
+border:none;
+
+padding:10px 16px;
+
+border-radius:8px;
+
+cursor:pointer;
+
 }
 
-.card h3 {
-  margin-bottom: 0.8rem;
-  font-size: 1.1rem;
+/* habit grid */
+
+.habit-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fill,minmax(160px,1fr));
+
+gap:20px;
+
 }
 
-.card img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 12px;
-  background-color: var(--card-bg);
-  margin-bottom: 0.7rem;
-  transition: transform 0.3s ease;
+.habit-card{
+
+background:linear-gradient(
+145deg,
+#e6d6c3,
+#d6c2a8
+);
+
+border-radius:16px;
+
+padding:20px;
+
+text-align:center;
+
+font-size:18px;
+
+box-shadow:0 8px 18px rgba(0,0,0,0.12);
+
 }
 
-.card img:hover {
-  transform: scale(1.02);
+/* ===== BUTTONS ===== */
+
+button{
+
+font-family:"Times New Roman", serif;
+
+font-style:italic;
+
+background:#c9b39a;
+
+border:none;
+
+padding:10px 16px;
+
+border-radius:10px;
+
+cursor:pointer;
+
+transition:.2s;
+
 }
 
-.card input[type="file"] {
-  margin-top: auto;
-  font-size: 0.85rem;
-  cursor: pointer;
-}
+button:hover{
 
-.card .tip {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  text-align: center;
-  margin-top: 0.4rem;
-}
+background:#b69b80;
 
-/* ------------------------
-   HABIT TRACKER
-   ------------------------ */
-.habit-board {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.2rem;
-  width: 100%;
-  max-width: 1200px;
-}
-
-.habit-card {
-  background-color: var(--card-bg);
-  border: 2px solid var(--card-border);
-  border-radius: 18px;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  min-height: 180px;
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-.habit-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-}
-
-.habit-card h3 {
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
-}
-
-.habit-card input[type="text"] {
-  width: 100%;
-  padding: 0.5rem;
-  margin-bottom: 0.5rem;
-  border: 1px solid var(--card-border);
-  border-radius: 12px;
-  background: var(--bg-main);
-  font-family: var(--font-main);
-  font-style: italic;
-}
-
-.habit-card .habit-tick {
-  font-size: 1.2rem;
-  cursor: pointer;
-  margin-top: auto;
-  align-self: flex-start;
-}
-
-/* ---- RESPONSIVE ---- */
-@media (max-width: 480px) {
-  .cards-container, .habit-board {
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 1rem;
-  }
-
-  .card img, .habit-card input[type="text"] {
-    height: 120px;
-  }
-
-  .card h3, .habit-card h3 {
-    font-size: 1rem;
-  }
 }
