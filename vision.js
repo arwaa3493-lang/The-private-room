@@ -1,121 +1,95 @@
-const board = document.getElementById("visionBoard")
-const addBtn = document.getElementById("addCardBtn")
+// vision.js
 
-let cards = JSON.parse(localStorage.getItem("visionCards")) || []
+document.addEventListener("DOMContentLoaded", () => {
+  const visionBoard = document.querySelector(".vision-board");
+  const addCardBtn = document.getElementById("addVisionCard");
 
+  // Function to create a new vision card
+  function createVisionCard(title = "New Card") {
+    const card = document.createElement("div");
+    card.classList.add("vision-card");
 
-function saveCards(){
+    // Editable title
+    const cardTitle = document.createElement("h3");
+    cardTitle.contentEditable = true;
+    cardTitle.innerText = title;
+    cardTitle.classList.add("vision-card-title");
+    card.appendChild(cardTitle);
 
-localStorage.setItem("visionCards", JSON.stringify(cards))
+    // Image placeholder
+    const img = document.createElement("img");
+    img.src = ""; // empty initially
+    img.alt = "Click to upload image";
+    card.appendChild(img);
 
-}
+    // Hidden file input
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = "image/*";
+    input.style.display = "none"; // hide it
+    card.appendChild(input);
 
+    // Placeholder text overlay
+    const placeholder = document.createElement("p");
+    placeholder.innerText = "Upload Image";
+    placeholder.classList.add("placeholder-text");
+    placeholder.style.position = "absolute";
+    placeholder.style.top = "50%";
+    placeholder.style.left = "50%";
+    placeholder.style.transform = "translate(-50%, -50%)";
+    placeholder.style.color = "#4b3828";
+    placeholder.style.pointerEvents = "none";
+    placeholder.style.fontStyle = "italic";
+    placeholder.style.fontSize = "14px";
+    card.style.position = "relative";
+    card.appendChild(placeholder);
 
-function createCard(cardData, index){
+    // Click card to trigger file input
+    card.addEventListener("click", () => {
+      input.click();
+    });
 
-const card = document.createElement("div")
-card.className = "vision-card"
+    // When image selected
+    input.addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        img.src = event.target.result;
+        placeholder.style.display = "none"; // hide placeholder
+      };
+      reader.readAsDataURL(file);
+    });
 
+    visionBoard.appendChild(card);
+  }
 
-const title = document.createElement("h3")
-title.className = "editable-title"
-title.contentEditable = true
-title.innerText = cardData.title || "New Vision"
+  // Add initial cards if they exist in HTML
+  document.querySelectorAll(".vision-card").forEach((card) => {
+    const img = card.querySelector("img");
+    const input = card.querySelector("input[type=file]");
+    const placeholder = card.querySelector(".placeholder-text");
 
+    card.style.position = "relative";
 
-title.addEventListener("input", () => {
+    card.addEventListener("click", () => {
+      input.click();
+    });
 
-cards[index].title = title.innerText
-saveCards()
+    input.addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        img.src = event.target.result;
+        if (placeholder) placeholder.style.display = "none";
+      };
+      reader.readAsDataURL(file);
+    });
+  });
 
-})
-
-
-const upload = document.createElement("label")
-upload.className = "upload-box"
-
-
-const input = document.createElement("input")
-input.type = "file"
-input.accept = "image/*"
-
-
-const span = document.createElement("span")
-span.innerText = "Upload an image"
-
-
-input.addEventListener("change", () => {
-
-const file = input.files[0]
-
-const reader = new FileReader()
-
-reader.onload = function(e){
-
-cards[index].image = e.target.result
-saveCards()
-
-renderBoard()
-
-}
-
-reader.readAsDataURL(file)
-
-})
-
-
-upload.appendChild(input)
-
-
-if(cardData.image){
-
-const img = document.createElement("img")
-img.src = cardData.image
-upload.appendChild(img)
-
-}else{
-
-upload.appendChild(span)
-
-}
-
-
-card.appendChild(title)
-card.appendChild(upload)
-
-board.appendChild(card)
-
-}
-
-
-function renderBoard(){
-
-board.innerHTML = ""
-
-cards.forEach((card, index) => {
-
-createCard(card, index)
-
-})
-
-}
-
-
-addBtn.onclick = () => {
-
-cards.push({
-
-title:"New Vision",
-
-image:null
-
-})
-
-saveCards()
-
-renderBoard()
-
-}
-
-
-renderBoard()
+  // Add new card button
+  addCardBtn.addEventListener("click", () => {
+    createVisionCard("New Card");
+  });
+});
