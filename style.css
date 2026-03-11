@@ -97,74 +97,132 @@ box-shadow:0 14px 28px rgba(0,0,0,0.18);
 grid-row:span 2;
 }
 
-/* ===== VISION BOARD ===== */
+/* =========================
+   DAILY VISION BOARD – CSS
+   ========================= */
 
-.vision-board{
-
-padding:40px;
-
-column-width:260px;
-
-column-gap:20px;
-
-max-width:1200px;
-margin:auto;
-
+/* ---- RESET ---- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.vision-card{
-
-break-inside:avoid;
-
-background:linear-gradient(
-145deg,
-#e6d6c3,
-#d6c2a8
-);
-
-border-radius:18px;
-
-padding:16px;
-
-margin-bottom:20px;
-
-box-shadow:0 8px 18px rgba(0,0,0,0.12);
-
+/* ---- ROOT VARIABLES ---- */
+:root {
+  --bg-main: #f5f0e7;       /* very light coffee / beige background */
+  --card-bg: #fff4eb;       /* empty card background */
+  --card-border: #d4b8a8;   /* slightly darker border */
+  --text-main: #4b3a36;
+  --text-muted: #7a665e;
+  --accent: #b08d7b;
+  --font-main: "Times New Roman", serif;
+  --transition-fast: 0.25s ease;
 }
 
-.vision-card h3{
-
-margin-top:0;
-margin-bottom:10px;
-
-color:#4b3828;
-
+/* ---- BODY ---- */
+body {
+  min-height: 100vh;
+  background-color: var(--bg-main);
+  font-family: var(--font-main);
+  color: var(--text-main);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
 }
 
-.vision-card img{
-
-width:100%;
-
-border-radius:12px;
-
-margin-bottom:10px;
-
+/* ---- PAGE TITLE ---- */
+h1 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-style: italic;
 }
 
-.vision-card input{
+/* ---- GRID CONTAINER ---- */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1200px;
+}
 
-width:100%;
+/* ---- SINGLE CARD ---- */
+.card {
+  background-color: var(--card-bg);
+  border: 2px solid var(--card-border);
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  min-height: 280px;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  overflow: hidden;
+  position: relative;
+}
 
-background:#f5efe6;
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
 
-border:none;
+/* ---- CARD TITLE ---- */
+.card h3 {
+  margin-bottom: 0.8rem;
+  text-align: center;
+  font-style: italic;
+  font-size: 1.1rem;
+}
 
-padding:6px;
+/* ---- IMAGE PLACEHOLDER ---- */
+.card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 12px;
+  background-color: var(--card-bg); /* empty card color */
+  margin-bottom: 0.7rem;
+  transition: transform 0.3s ease;
+}
 
-border-radius:8px;
+.card img:hover {
+  transform: scale(1.02);
+}
 
-cursor:pointer;
+/* ---- FILE INPUT ---- */
+.card input[type="file"] {
+  margin-top: auto;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
 
+/* ---- TIP TEXT ---- */
+.card .tip {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 0.4rem;
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 480px) {
+  .cards-container {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+  }
+
+  .card img {
+    height: 120px;
+  }
+
+  .card h3 {
+    font-size: 1rem;
+  }
 }
 
 /* ===== HABIT ROOM ===== */
