@@ -1,62 +1,121 @@
-document.addEventListener("DOMContentLoaded", function () {
+const board = document.getElementById("visionBoard")
+const addBtn = document.getElementById("addCardBtn")
 
-  const visionBoard = document.getElementById("visionBoard");
-  const addCardBtn = document.getElementById("addCardBtn");
+let cards = JSON.parse(localStorage.getItem("visionCards")) || []
 
-  function setupCard(card) {
 
-    const input = card.querySelector(".image-input");
-    const preview = card.querySelector(".preview");
-    const uploadText = card.querySelector(".upload-text");
-    const title = card.querySelector("h3");
+function saveCards(){
 
-    // Image Upload
-    input.addEventListener("change", function () {
+localStorage.setItem("visionCards", JSON.stringify(cards))
 
-      const file = this.files[0];
-      if (!file) return;
+}
 
-      const reader = new FileReader();
 
-      reader.onload = function (e) {
-        preview.src = e.target.result;
-        preview.style.display = "block";
-        if (uploadText) uploadText.style.display = "none";
-      };
+function createCard(cardData, index){
 
-      reader.readAsDataURL(file);
+const card = document.createElement("div")
+card.className = "vision-card"
 
-    });
 
-    // Editable title already handled by contenteditable
-  }
+const title = document.createElement("h3")
+title.className = "editable-title"
+title.contentEditable = true
+title.innerText = cardData.title || "New Vision"
 
-  // Initialize existing cards
-  document.querySelectorAll(".vision-card").forEach(card => {
-    setupCard(card);
-  });
 
-  // Add new card
-  addCardBtn.addEventListener("click", function () {
+title.addEventListener("input", () => {
 
-    const newCard = document.createElement("div");
-    newCard.className = "vision-card";
+cards[index].title = title.innerText
+saveCards()
 
-    newCard.innerHTML = `
-      <h3 contenteditable="true">New Vision</h3>
+})
 
-      <label class="upload-box">
-        <input type="file" accept="image/*" class="image-input">
-        <span class="upload-text">Upload an image</span>
-      </label>
 
-      <img class="preview">
-    `;
+const upload = document.createElement("label")
+upload.className = "upload-box"
 
-    visionBoard.appendChild(newCard);
 
-    setupCard(newCard);
+const input = document.createElement("input")
+input.type = "file"
+input.accept = "image/*"
 
-  });
 
-});
+const span = document.createElement("span")
+span.innerText = "Upload an image"
+
+
+input.addEventListener("change", () => {
+
+const file = input.files[0]
+
+const reader = new FileReader()
+
+reader.onload = function(e){
+
+cards[index].image = e.target.result
+saveCards()
+
+renderBoard()
+
+}
+
+reader.readAsDataURL(file)
+
+})
+
+
+upload.appendChild(input)
+
+
+if(cardData.image){
+
+const img = document.createElement("img")
+img.src = cardData.image
+upload.appendChild(img)
+
+}else{
+
+upload.appendChild(span)
+
+}
+
+
+card.appendChild(title)
+card.appendChild(upload)
+
+board.appendChild(card)
+
+}
+
+
+function renderBoard(){
+
+board.innerHTML = ""
+
+cards.forEach((card, index) => {
+
+createCard(card, index)
+
+})
+
+}
+
+
+addBtn.onclick = () => {
+
+cards.push({
+
+title:"New Vision",
+
+image:null
+
+})
+
+saveCards()
+
+renderBoard()
+
+}
+
+
+renderBoard()
