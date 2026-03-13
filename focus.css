@@ -1,245 +1,121 @@
-body{
-margin:0;
-font-family:"Times New Roman", serif;
-font-style:italic;
-background:linear-gradient(180deg,#f5efe6,#e7d8c9);
-color:#4a3b2c;
+/* =========================
+   GLOBAL RESET
+========================= */
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
 }
 
-.focus-container{
-max-width:1100px;
-margin:auto;
-padding:40px;
+/* =========================
+   PAGE STRUCTURE
+========================= */
+
+body {
+min-height: 100vh;
+display: flex;
+justify-content: center;
+align-items: flex-start;
+padding: 30px;
 }
 
-.session-creator{
-display:flex;
-gap:10px;
-margin-bottom:30px;
+/* Main container */
+.focus-container {
+width: 100%;
+max-width: 1000px;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 25px;
 }
 
-.session-creator input{
-flex:1;
-padding:10px;
-border-radius:8px;
-border:none;
-background:#f5efe6;
-}
-
-.session-grid{
-display:grid;
-grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
-gap:20px;
-margin-bottom:40px;
-}
-
-.session-card{
-
-background:linear-gradient(145deg,#e6d6c3,#d6c2a8);
-
-border-radius:16px;
-
-padding:20px;
-
-text-align:center;
-
-font-size:18px;
-
-cursor:pointer;
-
-box-shadow:0 8px 18px rgba(0,0,0,0.12);
-
-transition:.25s;
-
-}
-
-.session-card:hover{
-
-transform:translateY(-6px);
-
-box-shadow:0 14px 28px rgba(0,0,0,0.18);
-
-}
-
-.timer-section{
-
-text-align:center;
-
-margin-bottom:40px;
-
-}
-
-#timer{
-
-font-size:60px;
-
-margin:20px 0;
-
-}
-
-.timer-section button{
-
-margin:5px;
-
-padding:10px 20px;
-
-border:none;
-
-border-radius:10px;
-
-background:#c9b39a;
-
-cursor:pointer;
-
-}
-
-.tracker-title{
-margin-top:40px;
-}
-
-.tracker-grid{
-
-display:grid;
-
-grid-template-columns:repeat(7,1fr);
-
-gap:10px;
-
-margin-top:20px;
-
-}
-
-.day-box{
-
-background:#f5efe6;
-
-height:50px;
-
-border-radius:10px;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-font-size:20px;
-
-}
-
-.completed{
-
-background:#c9b39a;
-
-color:white;
-
-}
-/* top bar */
-
-.topbar{
-
-display:flex;
-justify-content:space-between;
-align-items:center;
-
-padding:20px 40px;
-
-background:#e6d6c3;
-
-box-shadow:0 4px 10px rgba(60,40,20,0.1);
-
-}
-
-
-/* back button */
-
-.focus-btn{
-
-background:#d8c7b2;
-
-border:none;
-
-padding:10px 16px;
-
-border-radius:12px;
-
-cursor:pointer;
-
-font-size:14px;
-
-font-style : italic;
-
-font-family: "Times New Roman";
-
-color:#3b2b22;
-
-transition:all .25s ease;
-
-}
-
-.back-btn:hover{
-
-background:#cbb79f;
-
-transform:translateY(-2px);
-
-box-shadow:0 6px 12px rgba(60,40,20,0.2);
-
-}
-
-
-
-/* add session button */
-
-#addSession{
-
-background:#c9b39a;
-
-border:none;
-
-padding:10px 18px;
-
-border-radius:12px;
-
-cursor:pointer;
-
-font-size:14px;
-
-color:#3b2b22;
-
-transition:all .25s ease;
-
-}
-
-#addSession:hover{
-
-background:#bda58a;
-
-transform:translateY(-2px);
-
-box-shadow:0 6px 12px rgba(60,40,20,0.2);
-
-}
-
-.session {
-position: relative;
-background: #f5ebe3;
-border-radius: 12px;
-padding: 20px;
-margin: 15px 0;
+/* =========================
+   TITLE
+========================= */
+
+.title {
 text-align: center;
 }
-.delete-session {
-position: absolute;
-top: 8px;
-right: 10px;
-border: none;
-background: none;
-font-size: 18px;
+
+/* =========================
+   BACK BUTTON
+========================= */
+
+.back-btn {
 cursor: pointer;
-color: #8b5e3c;
 }
 
-.delete-session:hover {
-color: #c0392b;
+/* =========================
+   ADD SESSION AREA
+========================= */
+
+.add-session-area {
+display: flex;
+gap: 10px;
+flex-wrap: wrap;
+justify-content: center;
+}
+
+.add-session-area input {
+padding: 8px;
+}
+
+/* =========================
+   SESSIONS GRID
+========================= */
+
+.sessions-grid {
+width: 100%;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+gap: 15px;
+}
+
+/* Individual session card */
+.session {
+position: relative;
+padding: 20px;
+border-radius: 12px;
+text-align: center;
+}
+
+/* Editable title */
+.session-title {
+outline: none;
+}
+
+/* =========================
+   DELETE BUTTON (X)
+========================= */
+
+.delete-session {
+position: absolute;
+top: 6px;
+right: 8px;
+border: none;
+background: none;
+cursor: pointer;
+font-size: 16px;
+}
+
+/* =========================
+   TIMER SECTION
+========================= */
+
+.timer-area {
+width: 100%;
+text-align: center;
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+
+#timer {
+font-size: 32px;
+}
+
+/* Timer buttons */
+.timer-area button {
+cursor: pointer;
 }
