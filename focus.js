@@ -121,22 +121,22 @@ trackerGrid.appendChild(box)
 }
 
 }
-function createSession(title = "New Session") {
 
-    const session = document.createElement("div");
-    session.className = "session";
+function createSession(title) {
 
-    session.innerHTML = `
-        <span class="session-title" contenteditable="true">${title}</span>
-        <button class="delete-session">✕</button>
-    `;
+const session = document.createElement("div");
+session.className = "session";
 
-    // delete logic
-    session.querySelector(".delete-session").addEventListener("click", () => {
-        session.remove();
-    });
+session.innerHTML = `
+<button class="delete-session">✕</button>
+<span class="session-title">${title}</span>
+`;
 
-    return session;
+session.querySelector(".delete-session").addEventListener("click", () => {
+session.remove();
+});
+
+return session;
 }
 
 
