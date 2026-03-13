@@ -1,75 +1,81 @@
-// get main elements
-const board = document.querySelector(".vision-board");
-const addBtn = document.getElementById("addCardBtn");
+const addCardBtn = document.getElementById("addCardBtn");
+const visionBoard = document.querySelector(".vision-board");
 
+/* =========================
+   IMAGE PREVIEW FUNCTION
+========================= */
 
-// activate behaviour for each card
-function activateCard(card) {
+function handleImageUpload(card) {
 
-    const input = card.querySelector("input");
-    const span = card.querySelector("span");
-    const title = card.querySelector("h3");
+  const input = card.querySelector("input[type='file']");
+  const preview = card.querySelector(".preview");
+  const uploadText = card.querySelector(".upload-text");
 
-    // make title editable
-    title.setAttribute("contenteditable", "true");
+  if (!input || !preview) return;
 
-    // hide default file input
-    input.style.display = "none";
+  input.addEventListener("change", function () {
 
-    // clicking upload text opens file picker
-    span.addEventListener("click", () => {
-        input.click();
-    });
+    const file = this.files[0];
+    if (!file) return;
 
-    // image upload
-    input.addEventListener("change", function () {
+    const reader = new FileReader();
 
-        const file = this.files[0];
-        if (!file) return;
+    reader.onload = function (e) {
+      preview.src = e.target.result;
+      preview.style.display = "block";
+      if (uploadText) uploadText.style.display = "none";
+    };
 
-        const reader = new FileReader();
-
-        reader.onload = function (e) {
-
-            const oldImg = card.querySelector("img");
-            if (oldImg) oldImg.remove();
-
-            const img = document.createElement("img");
-            img.src = e.target.result;
-
-            img.style.width = "100%";
-            img.style.marginTop = "10px";
-            img.style.borderRadius = "10px";
-
-            card.appendChild(img);
-        };
-
-        reader.readAsDataURL(file);
-    });
+    reader.readAsDataURL(file);
+  });
 }
 
+/* =========================
+   MAKE TITLES EDITABLE
+========================= */
 
-// activate existing cards
+function makeTitleEditable(card) {
+
+  const title = card.querySelector("h3");
+
+  if (!title) return;
+
+  title.contentEditable = true;
+
+}
+
+/* =========================
+   INITIALIZE EXISTING CARDS
+========================= */
+
 document.querySelectorAll(".vision-card").forEach(card => {
-    activateCard(card);
+  handleImageUpload(card);
+  makeTitleEditable(card);
 });
 
+/* =========================
+   ADD NEW CARD
+========================= */
 
-// create new card
-addBtn.addEventListener("click", () => {
+addCardBtn.addEventListener("click", () => {
 
-    const card = document.createElement("div");
-    card.className = "vision-card";
+  const newCard = document.createElement("div");
+  newCard.className = "vision-card";
 
-    card.innerHTML = `
-        <h3>New Vision</h3>
-        <label class="upload-box">
-            <input type="file" accept="image/*">
-            <span>Upload an image</span>
-        </label>
-    `;
+  newCard.innerHTML = `
+    <h3 contenteditable="true">New Vision</h3>
 
-    board.appendChild(card);
+    <label class="upload-box">
+      <input type="file" accept="image/*">
+      <span class="upload-text">Upload an image</span>
+    </label>
 
-    activateCard(card);
+    <img class="preview" />
+  `;
+
+  visionBoard.appendChild(newCard);
+
+  handleImageUpload(newCard);
+  makeTitleEditable(newCard);
+
 });
