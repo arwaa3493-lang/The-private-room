@@ -1,81 +1,62 @@
-const addCardBtn = document.getElementById("addCardBtn");
-const visionBoard = document.querySelector(".vision-board");
+document.addEventListener("DOMContentLoaded", function () {
 
-/* =========================
-   IMAGE PREVIEW FUNCTION
-========================= */
+  const visionBoard = document.getElementById("visionBoard");
+  const addCardBtn = document.getElementById("addCardBtn");
 
-function handleImageUpload(card) {
+  function setupCard(card) {
 
-  const input = card.querySelector("input[type='file']");
-  const preview = card.querySelector(".preview");
-  const uploadText = card.querySelector(".upload-text");
+    const input = card.querySelector(".image-input");
+    const preview = card.querySelector(".preview");
+    const uploadText = card.querySelector(".upload-text");
+    const title = card.querySelector("h3");
 
-  if (!input || !preview) return;
+    // Image Upload
+    input.addEventListener("change", function () {
 
-  input.addEventListener("change", function () {
+      const file = this.files[0];
+      if (!file) return;
 
-    const file = this.files[0];
-    if (!file) return;
+      const reader = new FileReader();
 
-    const reader = new FileReader();
+      reader.onload = function (e) {
+        preview.src = e.target.result;
+        preview.style.display = "block";
+        if (uploadText) uploadText.style.display = "none";
+      };
 
-    reader.onload = function (e) {
-      preview.src = e.target.result;
-      preview.style.display = "block";
-      if (uploadText) uploadText.style.display = "none";
-    };
+      reader.readAsDataURL(file);
 
-    reader.readAsDataURL(file);
+    });
+
+    // Editable title already handled by contenteditable
+  }
+
+  // Initialize existing cards
+  document.querySelectorAll(".vision-card").forEach(card => {
+    setupCard(card);
   });
-}
 
-/* =========================
-   MAKE TITLES EDITABLE
-========================= */
+  // Add new card
+  addCardBtn.addEventListener("click", function () {
 
-function makeTitleEditable(card) {
+    const newCard = document.createElement("div");
+    newCard.className = "vision-card";
 
-  const title = card.querySelector("h3");
+    newCard.innerHTML = `
+      <h3 contenteditable="true">New Vision</h3>
 
-  if (!title) return;
+      <label class="upload-box">
+        <input type="file" accept="image/*" class="image-input">
+        <span class="upload-text">Upload an image</span>
+      </label>
 
-  title.contentEditable = true;
+      <img class="preview">
+    `;
 
-}
+    visionBoard.appendChild(newCard);
 
-/* =========================
-   INITIALIZE EXISTING CARDS
-========================= */
+    setupCard(newCard);
 
-document.querySelectorAll(".vision-card").forEach(card => {
-  handleImageUpload(card);
-  makeTitleEditable(card);
-});
-
-/* =========================
-   ADD NEW CARD
-========================= */
-
-addCardBtn.addEventListener("click", () => {
-
-  const newCard = document.createElement("div");
-  newCard.className = "vision-card";
-
-  newCard.innerHTML = `
-    <h3 contenteditable="true">New Vision</h3>
-
-    <label class="upload-box">
-      <input type="file" accept="image/*">
-      <span class="upload-text">Upload an image</span>
-    </label>
-
-    <img class="preview" />
-  `;
-
-  visionBoard.appendChild(newCard);
-
-  handleImageUpload(newCard);
-  makeTitleEditable(newCard);
+  });
 
 });
