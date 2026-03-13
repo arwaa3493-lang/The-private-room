@@ -42,21 +42,15 @@ sessionGrid.appendChild(card)
 }
 
 
-addSession.onclick=()=>{
+addSessionBtn.addEventListener("click", () => {
 
-const name=sessionName.value.trim()
+const title = sessionInput.value || "New Session";
 
-if(name==="")return
+const session = createSession(title);
 
-sessions.push(name)
+focusRing.appendChild(session);
 
-localStorage.setItem("sessions",JSON.stringify(sessions))
-
-sessionName.value=""
-
-renderSessions()
-
-}
+});
 
 
 function updateTimer(){
