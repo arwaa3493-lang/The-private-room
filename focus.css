@@ -115,7 +115,24 @@ gap: 10px;
 font-size: 32px;
 }
 
-/* Timer buttons */
+/* Timer button container */
+.timer-area {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 10px;
+}
+
+/* Button group */
 .timer-area button {
-cursor: pointer;
+width: auto;          /* Prevent full width */
+min-width: 80px;      /* Small consistent size */
+padding: 8px 14px;
+display: inline-block;
+}
+
+/* Optional: Keep them side by side */
+.timer-buttons {
+display: flex;
+gap: 10px;
 }
