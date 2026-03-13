@@ -221,15 +221,11 @@ box-shadow:0 6px 12px rgba(60,40,20,0.2);
 
 }
 
-.delete-session {
-background: none;
-border: none;
-color: #8b5e3c;
-font-size: 16px;
-cursor: pointer;
-margin-left: 8px;
-}
-
-.delete-session:hover {
-color: #c0392b;
+.session {
+position: relative;
+background: #f5ebe3;
+border-radius: 12px;
+padding: 20px;
+margin: 15px 0;
+text-align: center;
 }
