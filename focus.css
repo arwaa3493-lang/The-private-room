@@ -220,3 +220,16 @@ transform:translateY(-2px);
 box-shadow:0 6px 12px rgba(60,40,20,0.2);
 
 }
+
+.delete-session {
+background: none;
+border: none;
+color: #8b5e3c;
+font-size: 16px;
+cursor: pointer;
+margin-left: 8px;
+}
+
+.delete-session:hover {
+color: #c0392b;
+}
