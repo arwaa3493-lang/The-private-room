@@ -229,3 +229,17 @@ padding: 20px;
 margin: 15px 0;
 text-align: center;
 }
+.delete-session {
+position: absolute;
+top: 8px;
+right: 10px;
+border: none;
+background: none;
+font-size: 18px;
+cursor: pointer;
+color: #8b5e3c;
+}
+
+.delete-session:hover {
+color: #c0392b;
+}
