@@ -1,0 +1,80 @@
+/* =========================
+   FOCUS ROOM LAYOUT
+========================= */
+
+.focus-container {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 20px;
+}
+
+/* Title */
+.focus-container .title {
+text-align: center;
+}
+
+/* Back button */
+.focus-container .back-btn {
+cursor: pointer;
+}
+
+/* Add session area */
+.add-session-area {
+display: flex;
+gap: 10px;
+flex-wrap: wrap;
+justify-content: center;
+}
+
+/* Sessions grid */
+.sessions-grid {
+width: 100%;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+gap: 15px;
+}
+
+/* Individual session card */
+.session {
+position: relative;
+}
+
+/* Delete X button */
+.delete-session {
+position: absolute;
+top: 6px;
+right: 8px;
+border: none;
+background: none;
+cursor: pointer;
+font-size: 16px;
+}
+
+/* Timer section */
+.timer-area {
+width: 100%;
+text-align: center;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 10px;
+}
+
+/* Timer display */
+#timer {
+font-size: 32px;
+}
+
+/* Timer buttons */
+.timer-buttons {
+display: flex;
+gap: 10px;
+}
+
+.timer-buttons button {
+width: auto;
+min-width: 80px;
+padding: 8px 14px;
+cursor: pointer;
+}
