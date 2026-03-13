@@ -1,86 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Daily Vision Board</title>
-
-<link rel="stylesheet" href="vision.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Vision Board</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 
 <body>
 
-
 <header class="topbar">
-
-<a href="index.html" class="back-button">Back to Private Room</a>
-
-<h1>Daily Vision Board</h1>
-
-<button id="addCardBtn" class="add-card-btn">
-+ New Vision Card
-</button>
-
+  <a href="index.html" class="back-button">Back to Private Room</a>
+  <h1>Daily Vision Board</h1>
+  <button id="addCardBtn" class="add-card-btn">+ New Vision Card</button>
 </header>
 
+<section class="vision-board" id="visionBoard">
 
+  <!-- Default Cards -->
 
-<section class="vision-board">
+  <div class="vision-card">
+    <h3 contenteditable="true">Outfit of the Day</h3>
 
+    <label class="upload-box">
+      <input type="file" accept="image/*" class="image-input">
+      <span class="upload-text">Upload an image</span>
+    </label>
 
-<div class="vision-card">
-<h3>Outfit of the Day</h3>
-<label class="upload-box">
-<input type="file" accept="image/*">
-<span>Upload an image</span>
-</label>
-</div>
+    <img class="preview">
+  </div>
 
+  <div class="vision-card">
+    <h3 contenteditable="true">Hobby of the Day</h3>
 
-<div class="vision-card">
-<h3>Hobby of the Day</h3>
-<label class="upload-box">
-<input type="file" accept="image/*">
-<span>Upload an image</span>
-</label>
-</div>
+    <label class="upload-box">
+      <input type="file" accept="image/*" class="image-input">
+      <span class="upload-text">Upload an image</span>
+    </label>
 
-
-<div class="vision-card">
-<h3>Daily Inspiration</h3>
-<label class="upload-box">
-<input type="file" accept="image/*">
-<span>Upload an image</span>
-</label>
-</div>
-
-
-<div class="vision-card">
-<h3>Meal of the Day</h3>
-<label class="upload-box">
-<input type="file" accept="image/*">
-<span>Upload an image</span>
-</label>
-</div>
-
-
-<div class="vision-card">
-<h3>Study Motivation</h3>
-<label class="upload-box">
-<input type="file" accept="image/*">
-<span>Upload an image</span>
-</label>
-</div>
-
+    <img class="preview">
+  </div>
 
 </section>
-<script src="vision.js"></script>
 
+<script src="vision.js"></script>
 
 </body>
 </html>
