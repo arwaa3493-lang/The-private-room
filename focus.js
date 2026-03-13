@@ -1,156 +1,42 @@
-const sessionGrid = document.getElementById("sessionGrid")
-const addSession = document.getElementById("addSession")
-const sessionName = document.getElementById("sessionName")
-
-const timerDisplay = document.getElementById("timer")
-const startBtn = document.getElementById("startTimer")
-const resetBtn = document.getElementById("resetTimer")
-
-const trackerGrid = document.getElementById("trackerGrid")
-
-let sessions = JSON.parse(localStorage.getItem("sessions")) || []
-
-let timer
-let time = 1500
-let activeSession = null
-
-
-function renderSessions(){
-
-sessionGrid.innerHTML=""
-
-sessions.forEach((name,index)=>{
-
-const card=document.createElement("div")
-
-card.className="session-card"
-
-card.textContent=name
-
-card.onclick=()=>{
-
-activeSession=index
-
-document.getElementById("timerTitle").textContent=name
-
-}
-
-sessionGrid.appendChild(card)
-
-})
-
-}
-
-
-addSessionBtn.addEventListener("click", () => {
-
-const title = sessionInput.value || "New Session";
-
-const session = createSession(title);
-
-focusRing.appendChild(session);
-
-});
-
-
-function updateTimer(){
-
-let minutes=Math.floor(time/60)
-
-let seconds=time%60
-
-timerDisplay.textContent=
-
-String(minutes).padStart(2,"0")+":"+String(seconds).padStart(2,"0")
-
-}
-
-
-startBtn.onclick=()=>{
-
-if(activeSession===null)return
-
-timer=setInterval(()=>{
-
-time--
-
-updateTimer()
-
-if(time===0){
-
-clearInterval(timer)
-
-completeSession()
-
-}
-
-},1000)
-
-}
-
-
-resetBtn.onclick=()=>{
-
-clearInterval(timer)
-
-time=1500
-
-updateTimer()
-
-}
-
-
-function buildTracker(){
-
-trackerGrid.innerHTML=""
-
-for(let i=0;i<7;i++){
-
-const box=document.createElement("div")
-
-box.className="day-box"
-
-trackerGrid.appendChild(box)
-
-}
-
-}
+const focusRoom = document.getElementById("focusRoom");
+const addSessionBtn = document.getElementById("addSessionBtn");
+const sessionInput = document.getElementById("sessionInput");
 
 function createSession(title) {
 
 const session = document.createElement("div");
 session.className = "session";
 
-session.innerHTML = `
-<button class="delete-session">✕</button>
-<span class="session-title">${title}</span>
-`;
+const span = document.createElement("span");
+span.textContent = title;
+span.contentEditable = true;
+span.className = "session-title";
 
-session.querySelector(".delete-session").addEventListener("click", () => {
+const deleteBtn = document.createElement("button");
+deleteBtn.textContent = "✕";
+deleteBtn.className = "delete-session";
+
+deleteBtn.addEventListener("click", () => {
 session.remove();
 });
+
+session.appendChild(deleteBtn);
+session.appendChild(span);
 
 return session;
 }
 
+addSessionBtn.addEventListener("click", () => {
 
-function completeSession(){
+let title = sessionInput.value.trim();
 
-const today=new Date().getDay()
-
-const boxes=document.querySelectorAll(".day-box")
-
-boxes[today].classList.add("completed")
-
-time=1500
-
-updateTimer()
-
+if (title === "") {
+title = "New Session";
 }
 
+const newSession = createSession(title);
+focusRoom.appendChild(newSession);
 
-renderSessions()
+sessionInput.value = "";
 
-buildTracker()
-
-updateTimer()
+});
