@@ -1,101 +1,75 @@
-// ===== VISION JS =====
+// get main elements
+const board = document.querySelector(".vision-board");
+const addBtn = document.getElementById("addCardBtn");
 
-// Select the vision board and add card button
-const visionBoard = document.querySelector('.vision-board');
-const addCardBtn = document.getElementById('addCardBtn');
 
-// Function to create a new vision card
-function createVisionCard(title = 'New Vision') {
-    const card = document.createElement('div');
-    card.classList.add('vision-card');
+// activate behaviour for each card
+function activateCard(card) {
 
-    // Editable title
-    const h3 = document.createElement('h3');
-    h3.textContent = title;
-    h3.contentEditable = true; // user can edit the title
-    h3.style.cursor = 'text';
-    card.appendChild(h3);
+    const input = card.querySelector("input");
+    const span = card.querySelector("span");
+    const title = card.querySelector("h3");
 
-    // Upload image area
-    const label = document.createElement('label');
-    label.classList.add('upload-box');
+    // make title editable
+    title.setAttribute("contenteditable", "true");
 
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.accept = 'image/*';
-    input.style.display = 'none'; // hide the default input
+    // hide default file input
+    input.style.display = "none";
 
-    const span = document.createElement('span');
-    span.textContent = 'Upload an image';
-    span.style.cursor = 'pointer';
-
-    // Clicking on the span opens file picker
-    span.addEventListener('click', () => input.click());
-
-    // When file is selected, display the image
-    input.addEventListener('change', (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                // Remove previous image if exists
-                const existingImg = card.querySelector('img');
-                if (existingImg) existingImg.remove();
-
-                const img = document.createElement('img');
-                img.src = event.target.result;
-                img.alt = file.name;
-                img.style.marginTop = '10px';
-                img.style.borderRadius = '12px';
-
-                card.appendChild(img);
-            }
-            reader.readAsDataURL(file);
-        }
+    // clicking upload text opens file picker
+    span.addEventListener("click", () => {
+        input.click();
     });
 
-    label.appendChild(input);
-    label.appendChild(span);
-    card.appendChild(label);
+    // image upload
+    input.addEventListener("change", function () {
 
-    visionBoard.appendChild(card);
+        const file = this.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+
+            const oldImg = card.querySelector("img");
+            if (oldImg) oldImg.remove();
+
+            const img = document.createElement("img");
+            img.src = e.target.result;
+
+            img.style.width = "100%";
+            img.style.marginTop = "10px";
+            img.style.borderRadius = "10px";
+
+            card.appendChild(img);
+        };
+
+        reader.readAsDataURL(file);
+    });
 }
 
-// Add event listener for the "+ New Vision Card" button
-addCardBtn.addEventListener('click', () => {
-    createVisionCard();
+
+// activate existing cards
+document.querySelectorAll(".vision-card").forEach(card => {
+    activateCard(card);
 });
 
-// Initialize: attach file upload to existing cards in HTML
-document.querySelectorAll('.vision-card').forEach(card => {
-    const input = card.querySelector('input[type="file"]');
-    const span = card.querySelector('span');
 
-    // hide input
-    input.style.display = 'none';
+// create new card
+addBtn.addEventListener("click", () => {
 
-    // span click triggers file selection
-    span.addEventListener('click', () => input.click());
+    const card = document.createElement("div");
+    card.className = "vision-card";
 
-    // file selection displays image
-    input.addEventListener('change', (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                // Remove previous image if exists
-                const existingImg = card.querySelector('img');
-                if (existingImg) existingImg.remove();
+    card.innerHTML = `
+        <h3>New Vision</h3>
+        <label class="upload-box">
+            <input type="file" accept="image/*">
+            <span>Upload an image</span>
+        </label>
+    `;
 
-                const img = document.createElement('img');
-                img.src = event.target.result;
-                img.alt = file.name;
-                img.style.marginTop = '10px';
-                img.style.borderRadius = '12px';
+    board.appendChild(card);
 
-                card.appendChild(img);
-            }
-            reader.readAsDataURL(file);
-        }
-    });
+    activateCard(card);
 });
