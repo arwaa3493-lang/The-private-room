@@ -1,54 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Focus Room</title>
-
 <link rel="stylesheet" href="focus.css">
-
 </head>
 
 <body>
 
-<div class="topbar">
-<h1>Focus Room  </h1>
-<br>
-<button class="focus-btn" onclick="location.href='index.html'">Back to Private Room</button>
+<div class="focus-container">
 
+<h1 class="title">Focus Room</h1>
 
-<section class="focus-container">
+<button onclick="location.href='index.html'" class="back-btn">
+Back to Private Room
+</button>
 
-<div class="session-creator">
-
-<input id="sessionName" placeholder="Name a focus session (Study, Reading, Coding...)">
-
-<button id="addSession">Add Session</button>
-
-
-<div id="sessionGrid" class="session-grid"></div>
-
-
-<div class="timer-section">
-
-<h2 id="timerTitle">Focus Timer</h2>
-
-<div id="timer">25:00</div>
-
-<button id="startTimer">Start</button>
-<button id="resetTimer">Reset</button>
-
+<div class="add-session-area">
+<input id="sessionInput" type="text" placeholder="Name a focus session">
+<button id="addSessionBtn">Add Session</button>
 </div>
 
+<div id="focusRoom" class="sessions-grid">
+<!-- Sessions will appear here -->
+</div>
 
-<h2 class="tracker-title">Weekly Consistency</h2>
+<div class="timer-area">
+<h2>Focus Timer</h2>
+<div id="timer">25:00</div>
+<button id="startBtn">Start</button>
+<button id="resetBtn">Reset</button>
+</div>
 
-<div id="trackerGrid" class="tracker-grid"></div>
-
-</section>
-
+</div>
 
 <script src="focus.js"></script>
 
