@@ -121,6 +121,23 @@ trackerGrid.appendChild(box)
 }
 
 }
+function createSession(title = "New Session") {
+
+    const session = document.createElement("div");
+    session.className = "session";
+
+    session.innerHTML = `
+        <span class="session-title" contenteditable="true">${title}</span>
+        <button class="delete-session">✕</button>
+    `;
+
+    // delete logic
+    session.querySelector(".delete-session").addEventListener("click", () => {
+        session.remove();
+    });
+
+    return session;
+}
 
 
 function completeSession(){
