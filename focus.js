@@ -1,42 +1,62 @@
-const focusRoom = document.getElementById("focusRoom");
 const addSessionBtn = document.getElementById("addSessionBtn");
-const sessionInput = document.getElementById("sessionInput");
+const sessionsContainer = document.getElementById("sessionsContainer");
 
-function createSession(title) {
+addSessionBtn.addEventListener("click", function () {
 
 const session = document.createElement("div");
-session.className = "session";
+session.className = "session-card";
 
-const span = document.createElement("span");
-span.textContent = title;
-span.contentEditable = true;
-span.className = "session-title";
+session.innerHTML = `
+<input type="text" placeholder="Session name">
+<button class="delete-session">Delete</button>
+`;
 
-const deleteBtn = document.createElement("button");
-deleteBtn.textContent = "✕";
-deleteBtn.className = "delete-session";
+sessionsContainer.appendChild(session);
 
-deleteBtn.addEventListener("click", () => {
+session.querySelector(".delete-session").addEventListener("click", function () {
 session.remove();
 });
 
-session.appendChild(deleteBtn);
-session.appendChild(span);
+});
 
-return session;
+const timerDisplay = document.getElementById("timerDisplay");
+const startTimer = document.getElementById("startTimer");
+const resetTimer = document.getElementById("resetTimer");
+
+let time = 1500;
+let timer;
+
+function updateDisplay() {
+
+const minutes = Math.floor(time / 60);
+const seconds = time % 60;
+
+timerDisplay.textContent =
+String(minutes).padStart(2,"0") + ":" +
+String(seconds).padStart(2,"0");
+
 }
 
-addSessionBtn.addEventListener("click", () => {
+startTimer.addEventListener("click", function () {
 
-let title = sessionInput.value.trim();
+if(timer) return;
 
-if (title === "") {
-title = "New Session";
+timer = setInterval(function () {
+
+if(time > 0){
+time--;
+updateDisplay();
 }
 
-const newSession = createSession(title);
-focusRoom.appendChild(newSession);
+},1000);
 
-sessionInput.value = "";
+});
+
+resetTimer.addEventListener("click", function () {
+
+clearInterval(timer);
+timer = null;
+time = 1500;
+updateDisplay();
 
 });
