@@ -1,5 +1,5 @@
 /* =========================
-   FOCUS ROOM LAYOUT
+   GLOBAL RESET
 ========================= */
 
 * {
@@ -13,79 +13,114 @@ html, body {
   height: 100%;
 }
 
-.focus-container {
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 20px;
+/* =========================
+   MAIN FOCUS ROOM LAYOUT
+========================= */
+
+.focus-room {
+  min-height: 100vh;          /* fills full screen */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
 }
 
-/* Title */
-.focus-container .title {
-text-align: center;
+/* =========================
+   TITLE
+========================= */
+
+.focus-title {
+  font-size: 28px;
+  margin-bottom: 20px;        /* space under title */
+  text-align: center;
 }
 
-/* Back button */
-.focus-container .back-btn {
-cursor: pointer;
+/* =========================
+   SESSIONS CONTAINER
+========================= */
+
+.sessions-container {
+  width: 100%;
+  max-width: 900px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  margin-bottom: 25px;
 }
 
-/* Add session area */
-.add-session-area {
-display: flex;
-gap: 10px;
-flex-wrap: wrap;
-justify-content: center;
+/* =========================
+   SESSION CARD
+========================= */
+
+.session-card {
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
 }
 
-/* Sessions grid */
-.sessions-grid {
-width: 100%;
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-gap: 15px;
-}
+/* Optional delete button inside session */
 
-/* Individual session card */
-.session {
-position: relative;
-}
-
-/* Delete X button */
 .delete-session {
-position: absolute;
-top: 6px;
-right: 8px;
-border: none;
-background: none;
-cursor: pointer;
-font-size: 16px;
+  margin-top: 8px;
+  padding: 6px 10px;
+  font-size: 13px;
+  cursor: pointer;
 }
 
-/* Timer section */
-.timer-area {
-width: 100%;
-text-align: center;
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 10px;
+/* =========================
+   ADD SESSION BUTTON
+========================= */
+
+.add-session {
+  padding: 8px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 25px;
+  width: auto;                /* prevents full-width stretching */
 }
 
-/* Timer display */
-#timer {
-font-size: 32px;
+/* =========================
+   TIMER SECTION
+========================= */
+
+.timer-container {
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  margin-top: 10px;
 }
 
-/* Timer buttons */
+.timer-display {
+  font-size: 48px;
+  margin-bottom: 15px;
+}
+
+/* Timer Buttons */
+
 .timer-buttons {
-display: flex;
-gap: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }
 
 .timer-buttons button {
-width: auto;
-min-width: 80px;
-padding: 8px 14px;
-cursor: pointer;
+  padding: 8px 14px;
+  font-size: 14px;
+  width: auto;               /* prevents horizontal stretching */
+  cursor: pointer;
+}
+
+/* =========================
+   RESPONSIVE SAFETY
+========================= */
+
+@media (max-width: 600px) {
+  .focus-title {
+    font-size: 22px;
+  }
+
+  .timer-display {
+    font-size: 36px;
+  }
 }
