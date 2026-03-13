@@ -236,3 +236,61 @@ min-width: 80px;
 padding: 8px 14px;
 cursor: pointer;
 }
+/* =========================
+   VISION BOARD LAYOUT
+========================= */
+
+.vision-board {
+  width: 100%;
+  max-width: 1000px;
+  margin: 30px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+/* Card */
+
+.vision-card {
+  position: relative;
+  padding: 15px;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Editable Title */
+
+.vision-card h3 {
+  outline: none;
+}
+
+/* Upload Box */
+
+.upload-box {
+  cursor: pointer;
+}
+
+/* Hide default file input */
+
+.image-input {
+  display: none;
+}
+
+/* Image Preview */
+
+.preview {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  display: none;
+}
+
+/* Add Button */
+
+.add-card-btn {
+  cursor: pointer;
+}
