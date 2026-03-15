@@ -1,46 +1,94 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Daily Vision Board</title>
+
 <link rel="stylesheet" href="vision.css">
+
 </head>
 
 <body>
 
 <div class="container">
 
+<button class="back-btn">
+Back to Private Room
+</button>
+
 <h1>Daily Vision Board</h1>
 
-<button id="addCardBtn">Add Vision Card</button>
-
-<div id="board" class="board"></div>
-
-</div>
+<button class="add-btn" id="addCardBtn">
++ New Vision Card
+</button>
 
 
-<!-- Add/Edit Modal -->
-<div id="modal" class="modal hidden">
+<div class="board" id="board">
 
-<div class="modal-content">
+<!-- CARD 1 -->
 
-<h2>Add Vision Card</h2>
+<div class="card">
 
-<input id="titleInput" placeholder="Title">
+<h3>Outfit of the Day</h3>
 
-<textarea id="descInput" placeholder="Description"></textarea>
-
-<input id="imageInput" placeholder="Image URL">
-
-<button id="saveCard">Save</button>
-<button id="closeModal">Cancel</button>
-
+<div class="image-box">
+Upload an image
 </div>
 
 </div>
 
 
+<!-- CARD 2 -->
+
+<div class="card">
+
+<h3>Hobby of the Day</h3>
+
+<div class="image-box">
+Upload an image
+</div>
+
+</div>
+
+
+<!-- CARD 3 -->
+
+<div class="card">
+
+<h3>Task of the Day</h3>
+
+<div class="image-box">
+Upload an image
+</div>
+
+</div>
+
+
+<!-- CARD 4 -->
+
+<div class="card">
+
+<h3>Meal of the Day</h3>
+
+<div class="image-box">
+Upload an image
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- JAVASCRIPT FILE -->
 <script src="vision.js"></script>
 
 </body>
+
 </html>
