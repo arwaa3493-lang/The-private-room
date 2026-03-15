@@ -1,121 +1,141 @@
-const board = document.getElementById("visionBoard")
-const addBtn = document.getElementById("addCardBtn")
+const board = document.getElementById("board");
+const modal = document.getElementById("modal");
 
-let cards = JSON.parse(localStorage.getItem("visionCards")) || []
+const titleInput = document.getElementById("titleInput");
+const descInput = document.getElementById("descInput");
+const imageInput = document.getElementById("imageInput");
+
+const addBtn = document.getElementById("addCardBtn");
+const saveBtn = document.getElementById("saveCard");
+const closeBtn = document.getElementById("closeModal");
+
+let cards = JSON.parse(localStorage.getItem("visionCards")) || [];
+
+let editIndex = null;
 
 
-function saveCards(){
 
-localStorage.setItem("visionCards", JSON.stringify(cards))
-
+function saveStorage(){
+localStorage.setItem("visionCards", JSON.stringify(cards));
 }
 
 
-function createCard(cardData, index){
 
-const card = document.createElement("div")
-card.className = "vision-card"
+function renderCards(){
 
+board.innerHTML = "";
 
-const title = document.createElement("h3")
-title.className = "editable-title"
-title.contentEditable = true
-title.innerText = cardData.title || "New Vision"
+cards.forEach((card,index)=>{
 
+const div = document.createElement("div");
+div.className = "card";
 
-title.addEventListener("input", () => {
+div.innerHTML = `
 
-cards[index].title = title.innerText
-saveCards()
+<img src="${card.image}">
 
-})
+<h3>${card.title}</h3>
 
+<p>${card.desc}</p>
 
-const upload = document.createElement("label")
-upload.className = "upload-box"
+<div class="card-actions">
 
+<button onclick="editCard(${index})">Edit</button>
 
-const input = document.createElement("input")
-input.type = "file"
-input.accept = "image/*"
+<button onclick="deleteCard(${index})">Delete</button>
 
+</div>
 
-const span = document.createElement("span")
-span.innerText = "Upload an image"
+`;
 
+board.appendChild(div);
 
-input.addEventListener("change", () => {
-
-const file = input.files[0]
-
-const reader = new FileReader()
-
-reader.onload = function(e){
-
-cards[index].image = e.target.result
-saveCards()
-
-renderBoard()
+});
 
 }
 
-reader.readAsDataURL(file)
-
-})
-
-
-upload.appendChild(input)
-
-
-if(cardData.image){
-
-const img = document.createElement("img")
-img.src = cardData.image
-upload.appendChild(img)
-
-}else{
-
-upload.appendChild(span)
-
-}
-
-
-card.appendChild(title)
-card.appendChild(upload)
-
-board.appendChild(card)
-
-}
-
-
-function renderBoard(){
-
-board.innerHTML = ""
-
-cards.forEach((card, index) => {
-
-createCard(card, index)
-
-})
-
-}
 
 
 addBtn.onclick = () => {
 
-cards.push({
+modal.classList.remove("hidden");
 
-title:"New Vision",
+editIndex = null;
 
-image:null
+titleInput.value = "";
+descInput.value = "";
+imageInput.value = "";
 
-})
+};
 
-saveCards()
 
-renderBoard()
+
+closeBtn.onclick = () => {
+
+modal.classList.add("hidden");
+
+};
+
+
+
+saveBtn.onclick = () => {
+
+const newCard = {
+
+title: titleInput.value,
+
+desc: descInput.value,
+
+image: imageInput.value
+
+};
+
+if(editIndex === null){
+
+cards.push(newCard);
+
+}else{
+
+cards[editIndex] = newCard;
+
+}
+
+saveStorage();
+
+renderCards();
+
+modal.classList.add("hidden");
+
+};
+
+
+
+function deleteCard(i){
+
+cards.splice(i,1);
+
+saveStorage();
+
+renderCards();
 
 }
 
 
-renderBoard()
+
+function editCard(i){
+
+const card = cards[i];
+
+titleInput.value = card.title;
+descInput.value = card.desc;
+imageInput.value = card.image;
+
+editIndex = i;
+
+modal.classList.remove("hidden");
+
+}
+
+
+
+renderCards();
