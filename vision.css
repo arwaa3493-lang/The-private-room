@@ -1,201 +1,118 @@
-body{
+/* GLOBAL STYLE */
 
+body{
+background:#efe6dc;
 margin:0;
+padding:0;
 font-family:"Times New Roman", serif;
 font-style:italic;
-
-background:linear-gradient(180deg,#f6efe7,#e6d6c3);
-
-color:#4a3b2c;
-
-}
-
-
-/* header */
-
-.topbar{
-
-text-align:center;
-
-padding:25px;
-
-}
-
-.topbar h1{
-
-margin-top:10px;
-
-font-size:32px;
-
-}
-
-
-.back-button{
-
-display:inline-block;
-
-background:#d8c7b2;
-
-padding:8px 16px;
-
-border-radius:12px;
-
-text-decoration:none;
-
-color:#4a3b2c;
-
-font-size:14px;
-
-}
-
-
-
-/* pinterest board */
-
-.vision-board{
-
-column-count:4;
-
-column-gap:25px;
-
-max-width:1200px;
-
-margin:auto;
-
-padding:40px;
-
-}
-
-
-@media (max-width:1000px){
-
-.vision-board{
-
-column-count:3;
-
-}
-
-}
-
-
-@media (max-width:700px){
-
-.vision-board{
-
-column-count:2;
-
-}
-
-}
-
-
-@media (max-width:450px){
-
-.vision-board{
-
-column-count:1;
-
-}
-
-}
-
-
-
-/* cards */
-
-.vision-card{
-
-break-inside:avoid;
-
-background:#e6d6c3;
-
-border-radius:20px;
-
-padding:18px;
-
-margin-bottom:25px;
-
-box-shadow:0 10px 20px rgba(0,0,0,0.12);
-
-transition:transform .25s ease, box-shadow .25s ease;
-
-}
-
-
-.vision-card:hover{
-
-transform:translateY(-6px);
-
-box-shadow:0 16px 28px rgba(0,0,0,0.18);
-
-}
-
-
-.vision-card h3{
-
-text-align:center;
-
-margin-bottom:15px;
-
-}
-
-
-
-/* upload placeholder */
-
-.upload-box{
-
+color:#4b382a;
 display:flex;
-
-align-items:center;
-
 justify-content:center;
+}
 
-height:180px;
-
-border-radius:14px;
-
-background:#f5efe6;
-
-cursor:pointer;
-
+.container{
+width:90%;
+max-width:900px;
 text-align:center;
-
-color:#7a5c48;
-
-font-size:15px;
-
+padding-top:30px;
 }
 
+/* BACK BUTTON */
 
-.upload-box input{
-
-display:none;
-
-}
-
-.add-card-btn{
-
-background:#d8c7b2;
-
+.back-btn{
+background:#d9c8b3;
 border:none;
-
-padding:10px 16px;
-
-border-radius:12px;
-
+padding:14px 28px;
+border-radius:22px;
+font-size:22px;
 cursor:pointer;
-
-margin-top:10px;
-
-font-size:14px;
-
-color:#3b2b22;
-
+color:#4b382a;
+box-shadow:0 4px 12px rgba(0,0,0,0.05);
 }
 
-.add-card-btn:hover{
+/* PAGE TITLE */
 
-background:#cbb79f;
+h1{
+font-size:60px;
+margin:40px 0;
+font-weight:500;
+}
+
+/* ADD CARD BUTTON */
+
+.add-btn{
+background:#d9c8b3;
+border:none;
+padding:18px 34px;
+border-radius:22px;
+font-size:24px;
+cursor:pointer;
+color:#4b382a;
+box-shadow:0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* PINTEREST GRID */
+
+.board{
+margin-top:60px;
+display:flex;
+flex-direction:column;
+gap:40px;
+}
+
+/* CARD */
+
+.card{
+background:#e4d2bf;
+border-radius:40px;
+padding:40px 20px;
+box-shadow:0 10px 25px rgba(0,0,0,0.05);
+}
+
+.card h3{
+font-size:36px;
+margin-bottom:25px;
+}
+
+/* IMAGE UPLOAD AREA */
+
+.image-box{
+background:#f5efe7;
+border-radius:30px;
+height:240px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:26px;
+color:#8a7663;
+cursor:pointer;
+}
+
+/* IMAGE */
+
+.image-box img{
+width:100%;
+height:100%;
+object-fit:cover;
+border-radius:30px;
+}
+
+/* MOBILE RESPONSIVE */
+
+@media (max-width:600px){
+
+h1{
+font-size:44px;
+}
+
+.card h3{
+font-size:28px;
+}
+
+.image-box{
+height:200px;
+font-size:22px;
+}
 
 }
